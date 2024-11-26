@@ -1,0 +1,9 @@
+.wheel {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    left: 0;
+    right: 0;
+    top: calc(100% - (330px / 1.7));
+    margin: auto;
+}

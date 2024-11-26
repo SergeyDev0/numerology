@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #fff;
+    height: 100%;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-image: url(../assets/background.jpg);
+        background-position: center;
+    }
+}
+
+#root {
+    padding: 30px 20px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    line-height: 25.4px;
+}
+
+.title > span {
+    color: #F6C37F;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.subtitle {
+    color: #F6C37F;
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+    text-align: center;
+}
