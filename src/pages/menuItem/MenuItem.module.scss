@@ -1,3 +1,7 @@
+.main {
+    height: calc(100% - 125px);
+}
+
 .inputWrapper {
     display: flex;
     flex-direction: column;
@@ -9,6 +13,7 @@
         height: 24px;
         text-align: center;
         font-size: 12px;
+        font-weight: 300;
 
         &::placeholder {
             text-align: center;
@@ -53,14 +58,12 @@
         justify-content: center;
         position: relative;
         width: 100%;
-        height: 300px;
         text-align: center;
         gap: 30px;
-        margin-bottom: 30px;
+        aspect-ratio: 1 / 1;
 
         &::before {
             content: '';
-            aspect-ratio: 315 / 330;
             position: absolute;
             left: 0;
             top: 0;
@@ -110,3 +113,16 @@
     justify-content: space-between;
     width: 100%;
 }
+
+.btnWrapper {
+    width: 120px;
+}
+
+.textWrapper {
+    width: 64%;
+    text-align: left;
+    height: 46%;
+    overflow: auto;
+    aspect-ratio: 1 / 1;
+}
+
