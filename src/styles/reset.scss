@@ -51,6 +51,12 @@ address {
 
 /* Form */
 
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
 input, textarea, button, select {
 	font-family: inherit;
     font-size: inherit;
@@ -88,11 +94,16 @@ legend {
 	display: block;
 }
 
-button, input {
+button, input, textarea {
   border: 0;
   background-color: transparent;
-  color: #000;
+  color: #fff;
   outline: none;
+  resize: none;
+}
+
+textarea {
+  overflow: hidden;
 }
 
 button {

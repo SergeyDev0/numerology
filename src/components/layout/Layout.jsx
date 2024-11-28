@@ -6,8 +6,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-        {children}
-      <Wheel />
+      {children}
     </>
   )
 };

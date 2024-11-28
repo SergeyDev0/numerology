@@ -1,0 +1,43 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    & > label {
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    &Wrapper {
+        width: 100%;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            padding: 1px; /* the border thickness */
+            border-radius: 10px;
+            background: linear-gradient(90deg, #997141 0%, #F6C37F 33.4%, #9D7444 100%);
+            mask: 
+            linear-gradient(#000 0 0) exclude, 
+            linear-gradient(#000 0 0) content-box;
+        }
+
+        & > input {
+            box-sizing: content-box;
+            display: flex;
+            justify-content: center;
+            border: 1px solid transparent;
+            width: 100%;
+            height: 31px;
+            font-size: 14px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 0;
+            font-weight: 400;
+        }
+    }
+}

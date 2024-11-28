@@ -1,9 +1,36 @@
 .wheel {
     position: absolute;
-    width: 330px;
-    height: 330px;
     left: 0;
     right: 0;
     top: calc(100% - (330px / 1.7));
+    height: 400px;
+    width: fit-content;
+    overflow: hidden;
     margin: auto;
+}
+
+.wheelBottom {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    right: calc(100% - 220px);
+    top: calc(100% - 130px);
+    height: 400px;
+    overflow: hidden;
+}
+
+.wheel img, .wheelBottom img {
+    display: block;
+    width: 330px;
+    height: 330px;
+    animation: wheel infinite 64s linear;
+}
+
+@keyframes wheel {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

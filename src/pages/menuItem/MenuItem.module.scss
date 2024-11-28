@@ -1,0 +1,47 @@
+.inputWrapper {
+    width: 100%;
+
+    & input {
+        width: 100%;
+    }
+
+    
+    
+}
+
+
+.areaWrapper {
+    position: relative;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 20px;
+
+    & textarea {
+        padding: 10px;
+        width: 100%;
+        word-wrap: break-word;
+        word-break: break-all;
+        height: 100%;
+        outline: none;
+        font-size: 12px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        padding: 1px; /* the border thickness */
+        border-radius: 10px;
+        background: linear-gradient(90deg, #997141 0%, #F6C37F 33.4%, #9D7444 100%);
+        mask: 
+        linear-gradient(#000 0 0) exclude, 
+        linear-gradient(#000 0 0) content-box;
+    }
+}
+
+.wrapperBtns {
+    display: flex;
+    gap: 17px;
+    justify-content: space-between;
+}
