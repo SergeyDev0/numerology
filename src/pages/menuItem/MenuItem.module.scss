@@ -1,14 +1,78 @@
 .inputWrapper {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 170px;
 
     & input {
         width: 100%;
+        height: 24px;
+        text-align: center;
+        font-size: 12px;
+
+        &::placeholder {
+            text-align: center;
+            font-size: 12px;
+        }
     }
 
-    
-    
+    & label {
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    & .input {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            padding: 1px; /* the border thickness */
+            border-radius: 10px;
+            background: linear-gradient(90deg, #997141 0%, #F6C37F 33.4%, #9D7444 100%);
+            mask: 
+            linear-gradient(#000 0 0) exclude, 
+            linear-gradient(#000 0 0) content-box;
+        }
+    }
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+
+    & .matrix {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 300px;
+        text-align: center;
+        gap: 30px;
+        margin-bottom: 30px;
+
+        &::before {
+            content: '';
+            aspect-ratio: 315 / 330;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../../assets/matrix.png);
+            z-index: -1;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    }
+}
 
 .areaWrapper {
     position: relative;
@@ -44,4 +108,5 @@
     display: flex;
     gap: 17px;
     justify-content: space-between;
+    width: 100%;
 }

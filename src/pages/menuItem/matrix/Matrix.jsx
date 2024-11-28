@@ -11,13 +11,15 @@ const Matrix = () => {
             <main className="main">
                 <h1 className="title"><span>Матрица судьбы</span></h1>
                 <form className={styles.form}>
-                    <div className={styles.inputWrapper}>
-                        <label htmlFor="date">Дата рождения</label>
-                        <input id="date" type="date" placeholder="дд.мм.гггг" />
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label htmlFor="date">Имя</label>
-                        <input id="date" type="text" placeholder="Валерия" />
+                    <div className={styles.matrix}>
+                        <div className={styles.inputWrapper}>
+                            <label htmlFor="date">Дата рождения</label>
+                            <div className={styles.input}><input id="date" type="date" placeholder="дд.мм.гггг" /></div>
+                        </div>
+                        <div className={styles.inputWrapper}>
+                            <label htmlFor="date">Имя</label>
+                            <div className={styles.input}><input id="date" type="text" placeholder="Валерия" /></div>
+                        </div>
                     </div>
                     <div className={styles.areaWrapper}>
                         <textarea placeholder="Задать дополнительный вопрос..." />
