@@ -41,7 +41,7 @@ const Calendar = () => {
                 <form className={styles.form}>
                     <div className={styles.matrixCalendar}>
                         <div className={styles.calendar}>
-                            <h3 className={styles.calendarName}></h3>
+                            <h3 className={styles.calendarName}>Вячеслав</h3>
                             <div className={styles.calendarLoader}>
                                 <img className={styles.matrixIcon} src={matrix} />
                                 <img className={styles.starIcon} src={star} />
