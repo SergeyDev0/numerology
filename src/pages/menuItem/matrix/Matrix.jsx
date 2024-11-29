@@ -8,7 +8,7 @@ import Markdown from "react-markdown";
 
 const Matrix = () => {
     const openai = new OpenAI({
-        apiKey: "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",
+        apiKey: "",
         dangerouslyAllowBrowser: true,
     });
     const [isSendReq, setIsSendReq] = React.useState(false);
