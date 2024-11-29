@@ -19,7 +19,7 @@ const Menu = () => {
                             <img src={img1} alt="Матрица судьбы" />
                             <p>Матрица судьбы</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/periods">
                             <img
                                 src={img2}
                                 alt="Жизненные периоды и точки роста"
@@ -28,11 +28,11 @@ const Menu = () => {
                         </Link>
                     </div>
                     <div className={styles.col}>
-                        <Link to="/">
+                        <Link to="/compatibility">
                             <img src={img3} alt="Совместимость" />
                             <p>Совместимость</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/prognosis">
                             <img src={img4} alt="Прогноз на день/неделю" />
                             <p>Прогноз на день/неделю</p>
                         </Link>

@@ -46,6 +46,7 @@ const Matrix = () => {
                                         <input
                                             id="date"
                                             type="date"
+                                            value="2000-01-01"
                                             onChange={(e) => {
                                                 setDateBirthday(e.target.value);
                                             }}

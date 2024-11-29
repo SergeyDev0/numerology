@@ -4,6 +4,7 @@ import Input from "../../components/input/Input";
 import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Styles.module.scss";
 import Wheel from "../../components/wheel/Wheel";
+import { Link } from 'react-router-dom';
 
 const Auth = () => {
     return (
@@ -19,11 +20,7 @@ const Auth = () => {
                         onClick={e => e.preveventDefault()}
                     />
                 </form>
-                <p className="description">
-                    После регистрации, вам прийдет на почту ссылка для
-                    подтверждения вашей учётной записи, пожалуйста проверьте
-                    папку «спам» иногда подтверждение e-mail попадает туда
-                </p>
+                <span className={styles.description}>Нет аккаунта?&nbsp; <Link to="/registration">Регистрация</Link></span>
             </main>
             <Wheel position="center" />
         </Layout>

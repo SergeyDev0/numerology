@@ -3,4 +3,20 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+}
+
+span.description {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    color: #F6C37F;
+    margin-top: 10px;
+    font-weight: 300;
+
+    & a {
+        text-decoration: solid underline 1px #F6C37F !important;
+        font-size: 14px;
+        color: #F6C37F;
+    }
 }

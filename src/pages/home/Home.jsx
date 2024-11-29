@@ -26,6 +26,10 @@ const Home = () => {
                 <p className="subtitle">
                     Наша подписка может быть ключом успеху!
                 </p>
+                <div className={styles.linksWrapper}>
+                    <a href="/">Политика конфиденциальности</a>
+                    <a href="/">Условия соглашения</a>
+                </div>
             </main>
             <Wheel position="center" />
         </Layout>

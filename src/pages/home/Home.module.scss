@@ -1,8 +1,29 @@
 .textWrapper {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .btnWrapper {
     width: 200px;
     margin: 0 auto;
+}
+
+.linksWrapper{
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 10px;
+    margin-bottom: 0px;
+
+    @media screen and (max-width: 380px) {
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    & a {
+        color: #F6C37F;
+        text-decoration: 1px solid underline #F6C37F !important;
+        -webkit-text-decoration: 1px solid underline #F6C37F !important;
+        font-size: 12px;
+    }
 }
