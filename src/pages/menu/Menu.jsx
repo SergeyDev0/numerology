@@ -36,7 +36,7 @@ const Menu = () => {
                             <img src={img4} alt="Прогноз на день/неделю" />
                             <p>Прогноз на день/неделю</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/calendar">
                             <img src={img5} alt="Календарь событий" />
                             <p>Календарь событий</p>
                         </Link>

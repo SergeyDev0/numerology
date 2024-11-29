@@ -74,6 +74,32 @@
             background-size: 100% 100%;
             background-repeat: no-repeat;
         }
+
+        &Calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            gap: 30px;
+            aspect-ratio: 1 / 1;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(../../assets/calendar-matrix.png);
+                z-index: -1;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+        }
     }
 }
 
@@ -126,3 +152,6 @@
     aspect-ratio: 1 / 1;
 }
 
+.calendar {
+    position: absolute;
+}

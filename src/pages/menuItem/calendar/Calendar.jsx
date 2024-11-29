@@ -5,8 +5,10 @@ import Wheel from "../../../components/wheel/Wheel";
 import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
 import styles from "../MenuItem.module.scss";
 import Markdown from "react-markdown";
+import matrix from "../../../assets/matrix-small.png";
+import star from "../../../assets/star.png";
 
-const Matrix = () => {
+const Calendar = () => {
     const openai = new OpenAI({
         apiKey: "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",
         dangerouslyAllowBrowser: true,
@@ -34,10 +36,17 @@ const Matrix = () => {
         <Layout>
             <main className={styles.main}>
                 <h1 className="title">
-                    <span>Матрица судьбы</span>
+                    <span>Календарь событий</span>
                 </h1>
                 <form className={styles.form}>
-                    <div className={styles.matrix}>
+                    <div className={styles.matrixCalendar}>
+                        <div className={styles.calendar}>
+                            <h3 className={styles.calendarName}></h3>
+                            <div className={styles.calendarLoader}>
+                                <img className={styles.matrixIcon} src={matrix} />
+                                <img className={styles.starIcon} src={star} />
+                            </div>
+                        </div>
                         {!isSendReq ? (
                             <>
                                 <div className={styles.inputWrapper}>
@@ -98,4 +107,4 @@ const Matrix = () => {
     );
 };
 
-export default Matrix;
+export default Calendar;
