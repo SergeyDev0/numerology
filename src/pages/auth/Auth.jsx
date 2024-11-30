@@ -5,12 +5,13 @@ import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Styles.module.scss";
 import Wheel from "../../components/wheel/Wheel";
 import { Link } from 'react-router-dom';
+import i18n from "../../i18n.js";
 
 const Auth = () => {
     return (
         <Layout>
             <main className="main">
-                <h1 className="title"><span>Авторизация</span></h1>
+                <h1 className="title"><span>{i18n.t('appTitle')}</span></h1>
                 <form className={styles.wrapper}>
                     <Input text="Почта" id="email" />
                     <Input text="Пароль" id="password" />
