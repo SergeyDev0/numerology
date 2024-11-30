@@ -9,11 +9,13 @@ const Header = () => {
       <div className={styles.headerWrapper}>
         {isAuth ? (
           <>
+            <ButtonOutline text="En / Ru" />
             <ButtonOutline url="/auth" text="Выйти" />
             <ButtonOutline url="/subscribe" text="Подписка" />
           </>
         ) : (
           <>
+            <ButtonOutline text="En / Ru" />
             <ButtonOutline url="/auth" text="Вход" />
             <ButtonOutline url="/registration" text="Регистрация" />
           </>
