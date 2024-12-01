@@ -1,5 +1,4 @@
 import React from "react";
-import OpenAI from "openai";
 import Layout from "../../../components/layout/Layout";
 import Wheel from "../../../components/wheel/Wheel";
 import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
@@ -9,36 +8,50 @@ import { useTranslation } from "react-i18next";
 
 const Matrix = () => {
     const { t } = useTranslation();
-    const openai = new OpenAI({
-        apiKey: "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",
-        dangerouslyAllowBrowser: true,
-    });
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [messageText, setMessageText] = React.useState("");
     const [dateBirthday, setDateBirthday] = React.useState("");
     const [name, setName] = React.useState("");
+    const [text, setText] = React.useState("");
 
-    async function message() {
-        const completion = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                { role: "system", content: "Ты нумеролог" },
-                {
-                    role: "user",
-                    content: `Составь подробный нумерологический анализ матрицы судьбы на основе даты рождения и имени. Меня интересуют такие аспекты, как предназначение, кармические задачи, сильные и слабые стороны, а также советы по личностному развитию. Вот данные, которые нужно учесть: Дата рождения: ${dateBirthday}. Полное имя на русском ${name} Задачи на будущее, с которыми хотелось бы разобраться, например: предназначение в карьере, благоприятные периоды для создания семьи и бизнеса, области, где человек может развиваться наиболее успешно. Если возможно, сделай акцент на следующих моментах: Кармические долги и как их можно отработать Какие энергии поддерживают человека в трудные периоды Число жизненного пути и как оно проявляется Подсказки по числу души, внешнему числу, а также рекомендация по отношению к текущему году и предстоящему году (личному году по нумерологическому циклу) Также добавь советы по усилению сильных сторон и проработке слабых качеств, если они есть. Приведи пример действий, которые можно предпринять для гармонизации энергетики и улучшения общей жизненной ситуации.`,
+    React.useEffect(() => {
+        if((name.length > 0) && (dateBirthday.length > 0)) {
+            setText(`Составь подробный нумерологический анализ матрицы судьбы на основе даты рождения и имени. Меня интересуют такие аспекты, как предназначение, кармические задачи, сильные и слабые стороны, а также советы по личностному развитию. Вот данные, которые нужно учесть: Дата рождения: ${dateBirthday}. Полное имя на русском ${name} Задачи на будущее, с которыми хотелось бы разобраться, например: предназначение в карьере, благоприятные периоды для создания семьи и бизнеса, области, где человек может развиваться наиболее успешно. Если возможно, сделай акцент на следующих моментах: Кармические долги и как их можно отработать Какие энергии поддерживают человека в трудные периоды Число жизненного пути и как оно проявляется Подсказки по числу души, внешнему числу, а также рекомендация по отношению к текущему году и предстоящему году (личному году по нумерологическому циклу) Также добавь советы по усилению сильных сторон и проработке слабых качеств, если они есть. Приведи пример действий, которые можно предпринять для гармонизации энергетики и улучшения общей жизненной ситуации`);
+        } else {
+            setText("");
+        }
+    }, [name, dateBirthday]);
+
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        let data = {
+            "text": text,
+        };
+
+        if (text.length > 0) {
+            fetch("http://185.48.250.104:5257/api/Promt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
                 },
-            ],
-        });
-
-        setMessageText(completion.choices[0].message.content);
-    }
+                body: JSON.stringify(data),
+                
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
     return (
         <Layout>
             <main className={styles.main}>
                 <h1 className="title">
                     <span>{t("matrixDestiny")}</span>
                 </h1>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.matrix}>
                         {!isSendReq ? (
                             <>

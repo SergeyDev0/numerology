@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Input.module.scss";
 
-const Input = ({ text, id, onChange }) => {
+const Input = ({ text, id, onChange, type }) => {
   return (
     <div className={styles.input}>
         <label htmlFor={id}>{text}</label>
-        <div id={id} className={styles.inputWrapper} onChange={onChange}>
-          <input type="text" />
+        <div id={id} className={styles.inputWrapper}>
+          <input type={type} onChange={onChange}  />
         </div>
     </div>
   )

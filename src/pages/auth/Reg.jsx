@@ -4,10 +4,12 @@ import Input from "../../components/input/Input";
 import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Styles.module.scss";
 import Wheel from "../../components/wheel/Wheel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import authStore from "../../stores/authStore";
 
 const Reg = () => {
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -15,26 +17,22 @@ const Reg = () => {
     let handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
-            email: email,
-            password: password,
+            "email": email,
+            "password": password,
         };
 
-        if (email.length > 0 && password.length > 0) {
-            let config = {
-                method: "post",
-                maxBodyLength: Infinity,
-                url: "",
+        if ((email.length > 0) && (password.length > 0)) {
+            fetch("http://185.48.250.104:5257/api/User/create", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify(data),
-            };
-
-            axios
-                .request(config)
+                body: JSON.stringify(data),
+                
+            })
                 .then((response) => {
                     authStore.getEmail(email);
-                    // navigate("/code");
+                    navigate("/auth");
                     console.log(response);
                 })
                 .catch((error) => {
@@ -58,11 +56,12 @@ const Reg = () => {
                         text={t("password")}
                         id="password"
                         onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                     />
                     <ButtonSolid
+                        button={true}
                         type="submit"
                         text={t("signup")}
-                        onClick={(e) => e.preveventDefault()}
                     />
                 </form>
                 <span className={styles.description}>
