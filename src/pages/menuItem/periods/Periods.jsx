@@ -5,8 +5,10 @@ import Wheel from "../../../components/wheel/Wheel";
 import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
 import styles from "../MenuItem.module.scss";
 import Markdown from "react-markdown";
+import { useTranslation } from "react-i18next";
 
 const Periods = () => {
+    const { t } = useTranslation();
     const openai = new OpenAI({
         apiKey: "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",
         dangerouslyAllowBrowser: true,
@@ -41,7 +43,7 @@ const Periods = () => {
                         {!isSendReq ? (
                             <>
                                 <div className={styles.inputWrapper}>
-                                    <label htmlFor="date">Дата рождения</label>
+                                    <label htmlFor="date">{t("DateBirth")}</label>
                                     <div className={styles.input}>
                                         <input
                                             id="date"
@@ -54,12 +56,12 @@ const Periods = () => {
                                     </div>
                                 </div>
                                 <div className={styles.inputWrapper}>
-                                    <label htmlFor="date">Имя</label>
+                                    <label htmlFor="name">{t("yourName")}</label>
                                     <div className={styles.input}>
                                         <input
-                                            id="date"
+                                            id="name"
                                             type="text"
-                                            placeholder="Ваше имя"
+                                            placeholder={t("girlName")}
                                             onChange={(e) => {
                                                 setName(e.target.value);
                                             }}
@@ -68,7 +70,7 @@ const Periods = () => {
                                 </div>
                                 <div className={styles.btnWrapper}>
                                     <ButtonSolid
-                                        text="Рассчитать"
+                                        text={t("calculate")}
                                         onClick={() => {
                                             setIsSendReq(true);
                                             message();

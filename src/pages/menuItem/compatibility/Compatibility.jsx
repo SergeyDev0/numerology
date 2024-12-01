@@ -4,15 +4,17 @@ import Wheel from "../../../components/wheel/Wheel";
 import woman from "../../../assets/woman.png";
 import man from "../../../assets/man.png";
 import genderArrows from "../../../assets/gender-arrows.svg";
-import styles from "../MenuItem.module.scss";
 import ButtonSolid from "../../../components/buttonSolid/ButtonSolid";
+import styles from "../MenuItem.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Compatibility = () => {
+    const { t } = useTranslation();
     return (
         <Layout>
             <main className={styles.mainCompatibility}>
                 <h1 className="title">
-                    <span>Совместимость</span>
+                    <span>{t("Compatibility")}</span>
                 </h1>
                 <div className={styles.wrapperCompatibility}>
                     <div className={styles.col}>
@@ -35,7 +37,7 @@ const Compatibility = () => {
                                     <input
                                         id="date"
                                         type="text"
-                                        placeholder="Никита"
+                                        placeholder={t("manName")}
                                         onChange={(e) => {
                                             setName(e.target.value);
                                         }}
@@ -63,7 +65,7 @@ const Compatibility = () => {
                                     <input
                                         id="date"
                                         type="text"
-                                        placeholder="Валерия"
+                                        placeholder={t("girlName")}
                                         onChange={(e) => {
                                             setName(e.target.value);
                                         }}
@@ -74,7 +76,7 @@ const Compatibility = () => {
                     </div>
                     <div className={styles.btnWrapper}>
                         <ButtonSolid
-                            text="Рассчитать"
+                            text={t("calculate")}
                             onClick={() => {
                             }}
                         />

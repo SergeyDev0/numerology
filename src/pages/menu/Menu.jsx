@@ -8,37 +8,39 @@ import img3 from "../../assets/menu3.png";
 import img4 from "../../assets/menu4.png";
 import img5 from "../../assets/menu5.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Menu = () => {
+    const { t } = useTranslation();
     return (
         <Layout>
             <main className={styles.main}>
                 <div className={styles.wrapper}>
                     <div className={styles.col}>
                         <Link to="/matrix">
-                            <img src={img1} alt="Матрица судьбы" />
-                            <p>Матрица судьбы</p>
+                            <img src={img1} alt={t("matrixDestiny")} />
+                            <p>{t("matrixDestiny")}</p>
                         </Link>
                         <Link to="/periods">
                             <img
                                 src={img2}
-                                alt="Жизненные периоды и точки роста"
+                                alt={t("periodsTitle")}
                             />
-                            <p>Жизненные периоды и точки роста</p>
+                            <p>{t("periodsTitle")}</p>
                         </Link>
                     </div>
                     <div className={styles.col}>
                         <Link to="/compatibility">
-                            <img src={img3} alt="Совместимость" />
-                            <p>Совместимость</p>
+                            <img src={img3} alt={t("Compatibility")} />
+                            <p>{t("Compatibility")}</p>
                         </Link>
                         <Link to="/prognosis">
-                            <img src={img4} alt="Прогноз на день/неделю" />
-                            <p>Прогноз на день/неделю</p>
+                            <img src={img4} alt={t("Prognosis")} />
+                            <p>{t("Prognosis")}</p>
                         </Link>
                         <Link to="/calendar">
-                            <img src={img5} alt="Календарь событий" />
-                            <p>Календарь событий</p>
+                            <img src={img5} alt={t("EventsCalendar")} />
+                            <p>{t("EventsCalendar")}</p>
                         </Link>
                     </div>
                 </div>

@@ -5,25 +5,25 @@ import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Styles.module.scss";
 import Wheel from "../../components/wheel/Wheel";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Reg = () => {
+    const { t } = useTranslation();
     return (
         <Layout>
             <main className="main">
-                <h1 className="title"><span>Регистрация</span></h1>
+                <h1 className="title"><span>{t("signup")}</span></h1>
                 <form className={styles.wrapper}>
-                    <Input text="Почта" id="email" />
-                    <Input text="Пароль" id="password" />
+                    <Input text={t("email")} id="email" />
+                    <Input text={t("password")} id="password" />
                     <ButtonSolid
                         type="submit"
-                        text="Войти"
+                        text={t("signup")}
                         onClick={e => e.preveventDefault()}
                     />
                 </form>
-                <span className={styles.description}>Есть аккаунт?&nbsp; <Link to="/auth">Авторизация</Link></span>
-                <p className="description">
-                    После регистрации, вам прийдет на почту ссылка для подтверждения вашей учётной записи,  проверьте папку «спам»
-                </p>
+                <span className={styles.description}>{t("haveAccount")}&nbsp; <Link to="/auth">{t("signin")}</Link></span>
+                <p className="description">{t("regEmail")}</p>
             </main>
             <Wheel position="center" />
         </Layout>

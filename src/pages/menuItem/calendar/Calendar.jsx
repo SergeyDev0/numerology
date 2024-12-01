@@ -3,12 +3,14 @@ import OpenAI from "openai";
 import Layout from "../../../components/layout/Layout";
 import Wheel from "../../../components/wheel/Wheel";
 import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
-import styles from "../MenuItem.module.scss";
 import Markdown from "react-markdown";
 import matrix from "../../../assets/matrix-small.png";
 import star from "../../../assets/star.png";
+import styles from "../MenuItem.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Calendar = () => {
+    const { t } = useTranslation();
     const openai = new OpenAI({
         apiKey: "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",
         dangerouslyAllowBrowser: true,
@@ -36,7 +38,7 @@ const Calendar = () => {
         <Layout>
             <main className={styles.main}>
                 <h1 className="title">
-                    <span>Календарь событий</span>
+                    <span>{t("EventsCalendar")}</span>
                 </h1>
                 <form className={styles.form}>
                     <div className={styles.matrixCalendar}>
@@ -50,7 +52,7 @@ const Calendar = () => {
                         {!isSendReq ? (
                             <>
                                 <div className={styles.inputWrapper}>
-                                    <label htmlFor="date">Дата рождения</label>
+                                    <label htmlFor="date">{t("DateBirth")}</label>
                                     <div className={styles.input}>
                                         <input
                                             id="date"
@@ -63,12 +65,12 @@ const Calendar = () => {
                                     </div>
                                 </div>
                                 <div className={styles.inputWrapper}>
-                                    <label htmlFor="date">Имя</label>
+                                    <label htmlFor="name">{t("Name")}</label>
                                     <div className={styles.input}>
                                         <input
-                                            id="date"
+                                            id="name"
                                             type="text"
-                                            placeholder="Ваше имя"
+                                            placeholder={t("girlName")}
                                             onChange={(e) => {
                                                 setName(e.target.value);
                                             }}
@@ -77,7 +79,7 @@ const Calendar = () => {
                                 </div>
                                 <div className={styles.btnWrapper}>
                                     <ButtonSolid
-                                        text="Рассчитать"
+                                        text={t("calculate")}
                                         onClick={() => {
                                             setIsSendReq(true);
                                             message();

@@ -5,23 +5,24 @@ import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Styles.module.scss";
 import Wheel from "../../components/wheel/Wheel";
 import { Link } from 'react-router-dom';
-import i18n from "../../i18n.js";
+import { useTranslation } from "react-i18next";
 
 const Auth = () => {
+    const { t } = useTranslation();
     return (
         <Layout>
             <main className="main">
-                <h1 className="title"><span>{i18n.t('appTitle')}</span></h1>
+                <h1 className="title"><span>{t("signin")}</span></h1>
                 <form className={styles.wrapper}>
-                    <Input text="Почта" id="email" />
-                    <Input text="Пароль" id="password" />
+                    <Input text={t("email")} id="email" />
+                    <Input text={t("password")} id="password" />
                     <ButtonSolid
                         type="submit"
-                        text="Войти"
+                        text={t("signin")}
                         onClick={e => e.preveventDefault()}
                     />
                 </form>
-                <span className={styles.description}>Нет аккаунта?&nbsp; <Link to="/registration">Регистрация</Link></span>
+                <span className={styles.description}>{t("notAccount")}&nbsp; <Link to="/registration">{t("signup")}</Link></span>
             </main>
             <Wheel position="center" />
         </Layout>
