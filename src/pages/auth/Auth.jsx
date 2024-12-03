@@ -22,7 +22,7 @@ const Auth = () => {
         };
 
         if ((email.length > 0) && (password.length > 0)) {
-            fetch("http://185.48.250.104:5257/api/Auth/login", {
+            fetch("https://numerology-ai.ru/user/api/Auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,14 +30,21 @@ const Auth = () => {
                 body: JSON.stringify(data),
                 
             })
-                .then((response) => {
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                if (data.accessToken) {
                     authStore.getEmail(email);
-                    navigate("/code");
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                    authStore.saveAccessToken(data.accessToken);
+                    authStore.saveRefreshToken(data.refreshToken);
+                    navigate("/");
+                }
+            })
         }
     };
     return (

@@ -11,46 +11,10 @@ import Compatibility from "./pages/menuItem/compatibility/Compatibility";
 import Prognosis from "./pages/menuItem/prognosis/Prognosis";
 import Periods from "./pages/menuItem/periods/Periods";
 import authStore from "./stores/authStore";
+import PrivacyPolicy from "./pages/policy/PrivacyPolicy";
+import TermsAgreement from "./pages/policy/TermsAgreement";
 
 function App() {
-  React.useEffect(() => {
-    const refreshToken = () => {
-      if(localStorage.getItem('accessToken')) {
-        let data = {
-
-        }
-    
-        let config = {
-          method: 'post',
-          url: 'https://api.amanatstore.com/doorway/refresh_tokens/',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-          },
-          data : JSON.stringify(data),
-        }; 
-    
-        axios.request(config)
-        .then((response) => {
-          if(response.data.status !== "error") {
-            authStore.saveAccessToken(response.data.data.jwt_access_token);
-            authStore.saveRefreshToken(response.data.data.jwt_refresh_token);
-          } else {
-            authStore.logout();
-            window.location.reload();
-          }
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-    }
-
-    refreshToken()
-    authStore.callRefreshFunc(refreshToken);
-    }, [])
-
   React.useEffect(() => {
     authStore.loadTokens();
   }, []);
@@ -67,6 +31,8 @@ function App() {
         <Route path="/compatibility" element={<Compatibility />} />
         <Route path="/prognosis" element={<Prognosis />} />
         <Route path="/periods" element={<Periods />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-agreement" element={<TermsAgreement />} />
       </Routes>
     </BrowserRouter>
   )

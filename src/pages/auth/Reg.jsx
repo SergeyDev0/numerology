@@ -22,7 +22,7 @@ const Reg = () => {
         };
 
         if ((email.length > 0) && (password.length > 0)) {
-            fetch("http://185.48.250.104:5257/api/User/create", {
+            fetch("https://numerology-ai.ru/user/api/User/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

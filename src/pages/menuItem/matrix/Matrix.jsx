@@ -5,6 +5,7 @@ import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
 import styles from "../MenuItem.module.scss";
 import Markdown from "react-markdown";
 import { useTranslation } from "react-i18next";
+import authStore from "../../../stores/authStore";
 
 const Matrix = () => {
     const { t } = useTranslation();
@@ -29,20 +30,37 @@ const Matrix = () => {
         };
 
         if (text.length > 0) {
-            fetch("http://185.48.250.104:5257/api/Promt", {
+            fetch("https://numerology-ai.ru/user/api/Promt", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${authStore.accessToken}`
                 },
                 body: JSON.stringify(data),
                 
             })
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            .then(async (response) => {
+                // Проверяем тип контента
+                const contentType = response.headers.get('Content-Type');
+            
+                if (contentType.includes('application/json')) {
+                  // Если приходит JSON
+                  return await response.json();
+                } else if (contentType.includes('text/plain')) {
+                  // Если приходит plain text
+                  return await response.text();
+                } else {
+                  throw new Error('Unknown response format');
+                }
+              })
+              .then((data) => {
+                setMessageText(data);
+                setIsSendReq(true);
+                console.log(data)
+              })
+              .catch((error) => {
+                console.error('Error:', error.message);
+              });
         }
     };
     return (
@@ -61,7 +79,7 @@ const Matrix = () => {
                                         <input
                                             id="date"
                                             type="date"
-                                            value="2000-01-01"
+                                            defaultValue="2000-01-01"
                                             onChange={(e) => {
                                                 setDateBirthday(e.target.value);
                                             }}
@@ -83,11 +101,9 @@ const Matrix = () => {
                                 </div>
                                 <div className={styles.btnWrapper}>
                                     <ButtonSolid
+                                        button={true}
+                                        type="submit"
                                         text={t("calculate")}
-                                        onClick={() => {
-                                            setIsSendReq(true);
-                                            message();
-                                        }}
                                     />
                                 </div>
                             </>
@@ -95,9 +111,11 @@ const Matrix = () => {
                             <>
                                 <div className={styles.textWrapper}>
                                     <Markdown>
-                                        {messageText
+                                        {
+                                            messageText
                                             ? messageText
-                                            : "Подождите..."}
+                                            : "Подождите..."
+                                        }
                                     </Markdown>
                                 </div>
                             </>

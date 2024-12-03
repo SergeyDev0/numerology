@@ -4,6 +4,7 @@ import ButtonSolid from "../../components/buttonSolid/ButtonSolid";
 import styles from "./Home.module.scss";
 import Wheel from "../../components/wheel/Wheel";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const { t } = useTranslation();
@@ -18,12 +19,12 @@ const Home = () => {
                     <p className="description">{t("homeDescription")}</p>
                 </div>
                 <div className={styles.btnWrapper}>
-                    <ButtonSolid url="/auth" text={t("askQuestion")} />
+                    <ButtonSolid url="/menu" text={t("askQuestion")} />
                 </div>
                 <p className="subtitle">{t("homeSubscribeText")}</p>
                 <div className={styles.linksWrapper}>
-                    <a href="/">{t("PrivacyPolicy")}</a>
-                    <a href="/">{t("TermsAgreement")}</a>
+                    <Link to="/privacy-policy">{t("PrivacyPolicy")}</Link>
+                    <Link to="/terms-agreement">{t("TermsAgreement")}</Link>
                 </div>
             </main>
             <Wheel position="center" />
