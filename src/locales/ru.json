@@ -14,7 +14,7 @@
     "periodsTitle": "Жизненные периоды и точки роста",
     "Compatibility": "Совместимость",
     "Prognosis": "Прогноз на день/неделю",
-    "SubscribeTitle": "Оформи подписку на 30 календарных дней за 990 ₽",
+    "SubscribeTitle": "Оформите подписку на 30 календарных дней за 990 ₽",
     "EventsCalendar": "Календарь событий",
 	"SubscribeItem1": "Неограниченное количество гаданий",
     "SubscribeItem2": "Предсказание дня",
@@ -30,6 +30,8 @@
 	"girlName": "Валерия",
 	"manName": "Никита",
     "calculate": "Рассчитать",
+    "back": "Вернуться",
+    "addResponse": "add. response",
 	"DateBirth": "Дата рождения",
     "Name": "Имя",
     "yourName": "Ваше имя"

@@ -15,7 +15,7 @@
     "Compatibility": "Compatibility",
     "Prognosis": "Daily/Weekly Forecast",
     "EventsCalendar": "Events calendar",
-    "SubscribeTitle": "Subscribe for 30 days for 990 ₽",
+    "SubscribeTitle": "Subscribe for 30 days for 12$",
     "SubscribeItem1": "Unlimited number of fortune tellings",
     "SubscribeItem2": "Prediction of the day",
     "SubscribeItem3": "Monthly forecast",
@@ -30,7 +30,9 @@
     "girlName": "Sarah",
 	"manName": "John",
     "calculate": "Calculate",
+    "back": "Back",
     "DateBirth": "Date of birth",
+    "addResponse": "Add. response",
     "Name": "Name",
     "yourName": "Your name"
 }

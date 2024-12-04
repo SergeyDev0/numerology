@@ -63,7 +63,7 @@ const Auth = () => {
                     />
                 </form>
                 <span className={styles.description}>
-                    {t("notAccount")}&nbsp;{" "}
+                    {t("notAccount")}&nbsp;
                     <Link to="/registration">{t("signup")}</Link>
                 </span>
             </main>

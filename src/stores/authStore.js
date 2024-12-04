@@ -12,9 +12,11 @@ class counterStore {
 
   getEmail(email) {
     this.email = email;
+    localStorage.setItem('email', email);
   }
 
   loadTokens() {
+    this.email = localStorage.getItem('email');
     this.accessToken = localStorage.getItem('accessToken');
     this.refreshToken = localStorage.getItem('refreshToken');
   }

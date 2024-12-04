@@ -4,9 +4,9 @@ import ButtonOutline from "./../buttonOutline/ButtonOutline";
 import languageStore from "../../stores/LanguageStore";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
+import authStore from "../../stores/authStore";
 
 const Header = observer(() => {
-    const [isAuth, setIsAuth] = React.useState(true);
     const { t } = useTranslation();
 
     const handleLanguageChange = () => {
@@ -16,13 +16,13 @@ const Header = observer(() => {
     return (
         <header className={styles.header}>
             <div className={styles.headerWrapper}>
-                {isAuth ? (
+                {authStore.accessToken ? (
                     <>
                         <ButtonOutline text="En / Ru" onClick={(e) => {
                             e.preventDefault();
                             handleLanguageChange();
                         }} />
-                        <ButtonOutline url="/auth" text={t('exit')} />
+                        <ButtonOutline url="/auth" text={t('exit')} onClick={() => authStore.logout()} />
                         <ButtonOutline url="/subscribe" text={t('subscribe')} />
                     </>
                 ) : (

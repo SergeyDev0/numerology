@@ -92,6 +92,45 @@
             background-repeat: no-repeat;
         }
 
+        &.response {
+            justify-content: flex-end;
+            gap: 0;
+            padding-bottom: 15%;
+            
+            & .btnWrapper {
+                margin-top: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .5rem;
+                width: 100%;
+                height: 31px;
+                padding: 0 7px;
+
+                & > .button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
+                    width: 40px;
+                    color: #fff;
+                    border-radius: 10px;
+                    background: linear-gradient(90deg, #F6C37F 0%, #9D7444 49%, #F6C37F 100%);
+                    font-size: 14px;
+                    font-weight: 500;
+                    height: 31px;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                & > button {
+                    width: auto;
+                    padding: 7px 0;
+                    width: 70px;
+                }
+            }
+        }
+
         &Calendar {
             display: flex;
             flex-direction: column;
@@ -175,9 +214,10 @@
 .textWrapper {
     width: 64%;
     text-align: left;
-    height: 46%;
+    height: 55%;
     overflow: auto;
     aspect-ratio: 1 / 1;
+    font-size: 15px;
 }
 
 .calendar {
