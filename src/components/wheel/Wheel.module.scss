@@ -7,6 +7,22 @@
     width: fit-content;
     overflow: hidden;
     margin: auto;
+
+    @media screen and (max-width: 600px) {
+        top: calc(100% - (300px / 1.9));
+    }
+
+    @media screen and (min-width: 1200px) {
+        top: calc(100% - (350px / 1.9));
+    }
+
+    @media screen and (min-width: 1400px) {
+        top: calc(100% - (400px / 1.9));
+    }
+
+    @media screen and (min-width: 1600px) {
+        top: calc(100% - (450px / 1.9));
+    }
 }
 
 .wheelBottom {
@@ -17,6 +33,30 @@
     top: calc(100% - 130px);
     height: 400px;
     overflow: hidden;
+    
+    @media screen and (min-width: 600px) {
+        top: calc(100% - (300px / 1.9));
+    }
+
+    @media screen and (min-width: 700px) {
+        top: calc(100% - (400px / 1.9));
+        right: calc(100% - 290px);
+        height: 400px;
+        width: 400px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        top: calc(100% - (500px / 1.9));
+    }
+
+    @media screen and (min-width: 1400px) {
+        top: calc(100% - (600px / 1.9));
+    }
+
+    @media screen and (min-width: 1600px) {
+        top: calc(100% - (700px / 1.9));
+        right: calc(100% - 300px);
+    }
 }
 
 .wheel img, .wheelBottom img {
@@ -24,6 +64,16 @@
     width: 330px;
     height: 330px;
     animation: wheel infinite 64s linear;
+
+    @media screen and (min-width: 1200px) {
+        height: 400px;
+        width: 400px;
+    }
+
+    @media screen and (min-width: 1400px) {
+        height: 500px;
+        width: 500px;
+    }
 }
 
 @keyframes wheel {

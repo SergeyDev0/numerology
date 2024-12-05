@@ -5,17 +5,28 @@
 .btnWrapper {
     width: 200px;
     margin: 0 auto;
+    font-size: 24px;
 
     @media screen and (min-width: 1000px) {
         width: 430px;
-        margin-bottom: 5px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    & a {
+        @media screen and (min-width: 1000px) {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            height: 50px;
+        }
     }
 }
 
-.linksWrapper{
+.linksWrapper {
     display: flex;
     justify-content: center;
-    gap: .5rem;
+    gap: 0.5rem;
     margin-top: 10px;
     margin-bottom: 0px;
 
@@ -30,13 +41,13 @@
     }
 
     & a {
-        color: #F6C37F;
-        text-decoration: 1px solid underline #F6C37F !important;
-        -webkit-text-decoration: 1px solid underline #F6C37F !important;
+        color: #f6c37f;
+        text-decoration: 1px solid underline #f6c37f !important;
+        -webkit-text-decoration: 1px solid underline #f6c37f !important;
         font-size: 12px;
-        
+
         @media screen and (min-width: 1000px) {
-            font-size: 24px;
+            font-size: 20px;
         }
     }
 }

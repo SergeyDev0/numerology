@@ -29,7 +29,7 @@ const Header = observer(() => {
                     <>
                         <ButtonOutline text="En / Ru" onClick={(e) => {
                             e.preventDefault();
-
+                            handleLanguageChange();
                         }} />
                         <ButtonOutline url="/auth" text={t('signin')} />
                         <ButtonOutline url="/registration" text={t('signup')} />

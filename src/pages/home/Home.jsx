@@ -12,10 +12,12 @@ const Home = () => {
         <Layout>
             <main className="main">
                 <div className={styles.textWrapper}>
-                    <h1 className="title">
-                        <span>{t("homeTitleSpan")}</span>
-                        {t("homeTitle")}
-                    </h1>
+                    <div className="titleWrapper">
+                        <h1 className="title">
+                            <span>{t("homeTitleSpan")}</span>
+                            {t("homeTitle")}
+                        </h1>
+                    </div>
                     <p className="description">{t("homeDescription")}</p>
                 </div>
                 <div className={styles.btnWrapper}>

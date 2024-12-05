@@ -4,6 +4,30 @@
     flex-direction: column;
     gap: 30px;
 
+    @media screen and (min-width: 850px) {
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    & input {
+        @media screen and (min-width: 490px) {
+            height: 50px;
+        }
+    }
+
+    & button {
+        @media screen and (min-width: 490px) {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 430px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 24px;
+        }
+    }
+
 }
 
 span.description {
@@ -14,9 +38,18 @@ span.description {
     margin-top: 10px;
     font-weight: 300;
 
+    @media screen and (min-width: 490px) {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
     & a {
         text-decoration: solid underline 1px #F6C37F !important;
         font-size: 14px;
         color: #F6C37F;
+
+        @media screen and (min-width: 490px) {
+            font-size: 16px;
+        }
     }
 }
