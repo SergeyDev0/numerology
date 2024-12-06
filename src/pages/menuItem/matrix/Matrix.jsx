@@ -9,8 +9,10 @@ import authStore from "../../../stores/authStore";
 import SendIcon from "../../../assets/send.svg";
 import styles from "../MenuItem.module.scss";
 import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 
 const Matrix = observer(() => {
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [isAddResClick, setIsAddResClick] = React.useState(false);
@@ -51,6 +53,9 @@ const Matrix = observer(() => {
                     }
                 })
                 .then((data) => {
+                    if(data.description === "Бесплатные попытки закончились!") {
+                        navigate("/subscribe");
+                    }
                     setMessageAddRes(data.response);
                     setIsShowAddRes(true);
                 })
@@ -90,6 +95,9 @@ const Matrix = observer(() => {
                     }
                 })
                 .then((data) => {
+                    if(data.description === "Бесплатные попытки закончились!") {
+                        navigate("/subscribe");
+                    }
                     setMessageText(data.response);
                     setIsSendReq(true);
                     console.log(data.response);

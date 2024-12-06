@@ -11,8 +11,10 @@ import authStore from "../../../stores/authStore";
 import AdditionalIcon from "../../../assets/additional.svg";
 import SendIcon from "../../../assets/send.svg";
 import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 
 const Calendar = observer(() => {
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [startAnimation, setStartAnimation] = React.useState(false);
@@ -54,6 +56,9 @@ const Calendar = observer(() => {
                     }
                 })
                 .then((data) => {
+                    if(data.description === "Бесплатные попытки закончились!") {
+                        navigate("/subscribe");
+                    }
                     setMessageAddRes(data.response);
                     setIsShowAddRes(true);
                 })
@@ -93,6 +98,9 @@ const Calendar = observer(() => {
                     }
                 })
                 .then((data) => {
+                    if(data.description === "Бесплатные попытки закончились!") {
+                        navigate("/subscribe");
+                    }
                     setMessageText(data.response);
                     setIsSendReq(true);
                     console.log(data);

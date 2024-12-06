@@ -10,8 +10,10 @@ import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import authStore from "../../../stores/authStore";
 import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 
 const Compatibility = observer(() => {
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const [dateBirthday, setDateBirthday] = React.useState("");
     const [name, setName] = React.useState("");
@@ -49,8 +51,10 @@ const Compatibility = observer(() => {
                     }
                 })
                 .then((data) => {
+                    if(data.description === "Бесплатные попытки закончились!") {
+                        navigate("/subscribe");
+                    }
                     setMessageText(data.response);
-                    console.log(data);
                 })
                 .catch((error) => {
                     console.error("Error:", error.message);
