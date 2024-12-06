@@ -17,6 +17,83 @@ const Compatibility = () => {
     const [name1, setName1] = React.useState("");
     const [isShowAddRes, setIsShowAddRes] = React.useState(false);
     const [messageAddRes, setMessageAddRes] = React.useState("");
+
+    let postAddResponse = async (e) => {
+        e.preventDefault();
+        let data = {
+            text: `Ты в роли таролога. Ответь на вопрос: ${addRes} для человека, которому составили подробный нумерологический анализ матрицы судьбы на основе даты рождения и имени, если бы ты являлся тарологом. Меня интересуют такие аспекты, как предназначение, кармические задачи, сильные и слабые стороны, а также советы по личностному развитию. Вот данные, которые нужно учесть: Дата рождения: [указать дату, например,20 мая 1988 года]. Полное имя на русском Вячеслав Задачи на будущее, с которыми хотелось бы разобраться, например: предназначение в карьере, благоприятные периоды для создания семьи и бизнеса, области, где человек может развиваться наиболее успешно. Если возможно, сделай акцент на следующих моментах: Кармические долги и как их можно отработать Какие энергии поддерживают человека в трудные периоды Число жизненного пути и как оно проявляется Подсказки по числу души, внешнему числу, а также рекомендация по отношению к текущему году и предстоящему году (личному году по нумерологическому циклу) Также добавь советы по усилению сильных сторон и проработке слабых качеств, если они есть. Приведи пример действий, которые можно предпринять для гармонизации энергетики и улучшения общей жизненной ситуации. Не расписывай анализ матрицы судьбы, ответь только на вопрос на основе того, ответа который ты бы дал.`,
+        };
+
+        if (addRes.length > 0) {
+            fetch("https://numerology-ai.ru/user/api/Promt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authStore.accessToken}`,
+                },
+                body: JSON.stringify(data),
+            })
+                .then(async (response) => {
+                    // Проверяем тип контента
+                    const contentType = response.headers.get("Content-Type");
+
+                    if (contentType.includes("application/json")) {
+                        // Если приходит JSON
+                        return await response.json();
+                    } else if (contentType.includes("text/plain")) {
+                        // Если приходит plain text
+                        return await response.text();
+                    } else {
+                        throw new Error("Unknown response format");
+                    }
+                })
+                .then((data) => {
+                    setMessageAddRes(data.response);
+                    setIsShowAddRes(true);
+                })
+                .catch((error) => {
+                    console.error("Error:", error.message);
+                });
+        }
+    };
+
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        let data = {
+            text: `проведи Расширенный и детальный нумерологический анализ совместимости пар, Мужчина рожден ${dateBirthday} года имя ${name}, девушка рождена ${dateBirthday1} года имя ${name1}, анализ включающий описание их личных и жизненных чисел. В настоящее время они определяют свое предпочтение в романтических и семейных отношениях, а также в том, как их энергия взаимодействует с другими жизненными понятиями, такими как дружба, работа и духовное развитие. Основывай свой анализ чисел: Число жизненных путей каждого из партнеров и его влияние на характер, цели и мировоззрение. Число судьбы (судьбоносное число) и то, как оно отражается на основных чертах личности каждого человека. Размер выражений (внешнего проявления), подчеркивая, как каждый из них выглядит и как его воспринимают окружающие. Число души, которое раскроет скрытые желания, мечты и мотивацию каждого партнера. Дайте подробный обзор совместимости этих цифр и описаний, какие аспекты имеют значение, и какие могут быть вызваны на должность. Предоставь рекомендации по тому, как каждый партнер может взаимодействовать с другим, чтобы построить крепкие, устойчивые взаимные и обогащающие отношения. Если возможны ошибочные советы, основанные на их нумерологических характеристиках, также укажите их.`,
+        };
+
+        fetch("https://numerology-ai.ru/user/api/Promt", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${authStore.accessToken}`,
+            },
+            body: JSON.stringify(data),
+        })
+            .then(async (response) => {
+                // Проверяем тип контента
+                const contentType = response.headers.get("Content-Type");
+
+                if (contentType.includes("application/json")) {
+                    // Если приходит JSON
+                    return await response.json();
+                } else if (contentType.includes("text/plain")) {
+                    // Если приходит plain text
+                    return await response.text();
+                } else {
+                    throw new Error("Unknown response format");
+                }
+            })
+            .then((data) => {
+                setMessageText(data.response);
+                setIsSendReq(true);
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("Error:", error.message);
+            });
+    };
     return (
         <Layout>
             <main className={styles.mainCompatibility}>
@@ -104,7 +181,11 @@ const Compatibility = () => {
                         <>
                             <div className={styles.inputsWrapper}>
                                 <div className={styles.response}>
-                                    <Markdown>{messageAddRes ? messageAddRes : "Ответ чата"}</Markdown>
+                                    <Markdown>
+                                        {messageAddRes
+                                            ? messageAddRes
+                                            : "Ответ чата"}
+                                    </Markdown>
                                 </div>
                                 <div className={styles.inputAdd}>
                                     <textarea
