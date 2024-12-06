@@ -28,6 +28,10 @@
         background-size: cover;
         background-image: url(../../assets/background-pink.png);
         background-position: center;
+
+        @media screen and (min-width: 900px) {
+            background-image: url(../../assets/background-big-pink.jpg);
+        }
     }
 }
 

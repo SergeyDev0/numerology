@@ -13,7 +13,7 @@ import SendIcon from "../../../assets/send.svg";
 
 const Calendar = () => {
     const { t } = useTranslation();
-    const [isSendReq, setIsSendReq] = React.useState(true);
+    const [isSendReq, setIsSendReq] = React.useState(false);
     const [startAnimation, setStartAnimation] = React.useState(false);
     const [isAddResClick, setIsAddResClick] = React.useState(false);
     const [isShowAddRes, setIsShowAddRes] = React.useState(false);
@@ -21,7 +21,7 @@ const Calendar = () => {
     const [addRes, setAddRes] = React.useState("");
     const [dateBirthday, setDateBirthday] = React.useState("");
     const [name, setName] = React.useState("");
-    const [messageText, setMessageText] = React.useState("fasfas fkdsjbf kbjsdkbj fkjbdskbfb jksdkb fkjsbdf kbjsdjfk bsd kjbfs kbjfsdkj fbskbfbjs dj bbjsdb fkjbsdb fkbjsdkfbj skdf jbkbjsajb fksb bfbs bdfk skdjf bsdkjfb sdkb b kjs bjf sbj bkj kbjs kfjbdksjb fjbkdsjbk jb bjbsdk bdkjb ksjbd blab;laknls   sdjf nsd;ljb sdb;lj lb sbjlg sbjdlkjgb sbj;l gb;jls bj;ggsdb j;lbjl;k gsbj sgjbl;;sg dbjl sdgb;jl");
+    const [messageText, setMessageText] = React.useState("");
 
     let postAddResponse = async (e) => {
         e.preventDefault();
