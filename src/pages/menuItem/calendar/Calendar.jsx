@@ -68,36 +68,38 @@ const Calendar = () => {
             text: `напиши календарь благоприятных событий в нумерологии на этот месяц этого года для человека, рожденного ${dateBirthday} перечисли благоприятные дни в месяце, напиши их расшифроку для чего этот день благоприятен так же если есть опасные или негативные дни укажи их и дай рекомендации что лучше в эти дни не делать`,
         };
 
-        fetch("https://numerology-ai.ru/user/api/Promt", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${authStore.accessToken}`,
-            },
-            body: JSON.stringify(data),
-        })
-            .then(async (response) => {
-                // Проверяем тип контента
-                const contentType = response.headers.get("Content-Type");
+        if (name !== "") {
+            fetch("https://numerology-ai.ru/user/api/Promt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authStore.accessToken}`,
+                },
+                body: JSON.stringify(data),
+            })
+                .then(async (response) => {
+                    // Проверяем тип контента
+                    const contentType = response.headers.get("Content-Type");
 
-                if (contentType.includes("application/json")) {
-                    // Если приходит JSON
-                    return await response.json();
-                } else if (contentType.includes("text/plain")) {
-                    // Если приходит plain text
-                    return await response.text();
-                } else {
-                    throw new Error("Unknown response format");
-                }
-            })
-            .then((data) => {
-                setMessageText(data.response);
-                setIsSendReq(true);
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error("Error:", error.message);
-            });
+                    if (contentType.includes("application/json")) {
+                        // Если приходит JSON
+                        return await response.json();
+                    } else if (contentType.includes("text/plain")) {
+                        // Если приходит plain text
+                        return await response.text();
+                    } else {
+                        throw new Error("Unknown response format");
+                    }
+                })
+                .then((data) => {
+                    setMessageText(data.response);
+                    setIsSendReq(true);
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error.message);
+                });
+        }
     };
     return (
         <Layout>
@@ -108,9 +110,19 @@ const Calendar = () => {
                 <form className={styles.form}>
                     <div className={styles.matrixCalendar}>
                         <div className={styles.calendar}>
-                            <h3 className={styles.calendarName}>{name.slice(0, 10)}</h3>
-                            <div className={`${styles.calendarLoader}` + (startAnimation ? ` ${styles.start}` : "")}>
-                                <img className={styles.matrixIcon} src={matrix} />
+                            <h3 className={styles.calendarName}>
+                                {name.slice(0, 10)}
+                            </h3>
+                            <div
+                                className={
+                                    `${styles.calendarLoader}` +
+                                    (startAnimation ? ` ${styles.start}` : "")
+                                }
+                            >
+                                <img
+                                    className={styles.matrixIcon}
+                                    src={matrix}
+                                />
                                 <img className={styles.starIcon} src={star} />
                             </div>
                         </div>
@@ -153,7 +165,8 @@ const Calendar = () => {
                                         text={t("calculate")}
                                         onClick={(e) => {
                                             handleSubmit(e);
-                                            setStartAnimation(true);
+                                            if (name !== "")
+                                                setStartAnimation(true);
                                         }}
                                     />
                                 </div>
@@ -175,6 +188,7 @@ const Calendar = () => {
                                                 onClick={() => {
                                                     setMessageText("");
                                                     setIsSendReq(false);
+                                                    setStartAnimation(false);
                                                 }}
                                                 type="submit"
                                                 text={t("back")}
@@ -206,28 +220,46 @@ const Calendar = () => {
                                                         type="text"
                                                         placeholder="Введите дополнительный запрос"
                                                         onChange={(e) => {
-                                                            setAddRes(e.target.value);
+                                                            setAddRes(
+                                                                e.target.value
+                                                            );
                                                         }}
                                                     />
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setIsShowAddRes(false);
-                                                            setMessageAddRes("");
-                                                            setIsAddResClick(false);
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsAddResClick(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
                                                     {!messageAddRes && (
                                                         <button
                                                             button={"true"}
-                                                            className={styles.addButton}
+                                                            className={
+                                                                styles.addButton
+                                                            }
                                                             onClick={(e) => {
-                                                                postAddResponse(e);
-                                                                setIsShowAddRes(true);
+                                                                postAddResponse(
+                                                                    e
+                                                                );
+                                                                setIsShowAddRes(
+                                                                    true
+                                                                );
                                                             }}
                                                         >
                                                             <img
@@ -240,18 +272,30 @@ const Calendar = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <div className={styles.textWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.textWrapper
+                                                    }
+                                                >
                                                     <Markdown>
                                                         {messageAddRes}
                                                     </Markdown>
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setMessageAddRes("");
-                                                            setIsShowAddRes(false);
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
@@ -262,7 +306,9 @@ const Calendar = () => {
                                                                 styles.addButton
                                                             }
                                                             onClick={(e) =>
-                                                                postAddResponse(e)
+                                                                postAddResponse(
+                                                                    e
+                                                                )
                                                             }
                                                         >
                                                             <img
