@@ -17,7 +17,7 @@ const Compatibility = () => {
     const [dateBirthday1, setDateBirthday1] = React.useState("");
     const [name1, setName1] = React.useState("");
     const [isShowAddRes, setIsShowAddRes] = React.useState(false);
-    const [messageAddRes, setMessageAddRes] = React.useState("");
+    const [messageText, setMessageText] = React.useState("");
 
     let handleSubmit = async () => {
         let data = {
@@ -49,7 +49,6 @@ const Compatibility = () => {
                 })
                 .then((data) => {
                     setMessageText(data.response);
-                    setIsSendReq(true);
                     console.log(data);
                 })
                 .catch((error) => {
@@ -81,7 +80,7 @@ const Compatibility = () => {
                                             <input
                                                 id="date1"
                                                 type="date"
-                                                value="2000-01-01"
+                                                defaultValue="2000-01-01"
                                                 onChange={(e) => {
                                                     setDateBirthday(
                                                         e.target.value
@@ -114,7 +113,7 @@ const Compatibility = () => {
                                             <input
                                                 id="date"
                                                 type="date"
-                                                value="2000-01-01"
+                                                defaultValue="2000-01-01"
                                                 onChange={(e) => {
                                                     setDateBirthday1(
                                                         e.target.value
@@ -155,8 +154,8 @@ const Compatibility = () => {
                             <div className={styles.inputsWrapper}>
                                 <div className={styles.response}>
                                     <Markdown>
-                                        {messageAddRes
-                                            ? messageAddRes
+                                        {   messageText
+                                            ? messageText
                                             : "Подождите"}
                                     </Markdown>
                                 </div>

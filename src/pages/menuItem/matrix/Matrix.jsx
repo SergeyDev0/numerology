@@ -11,11 +11,11 @@ import styles from "../MenuItem.module.scss";
 
 const Matrix = () => {
     const { t } = useTranslation();
-    const [isSendReq, setIsSendReq] = React.useState(true);
+    const [isSendReq, setIsSendReq] = React.useState(false);
     const [isAddResClick, setIsAddResClick] = React.useState(false);
     const [isShowAddRes, setIsShowAddRes] = React.useState(true);
-    const [messageAddRes, setMessageAddRes] = React.useState("asfasfsafsafsa asfsa fa ");
-    const [messageText, setMessageText] = React.useState("Lorem aosduinf hsdlf kldhsf lkjsdfhopashdfohdsohf'h s'kdhnf'kdnlnf 'lksdnfg nkldskn fngkslkdn gnkflsd'glfdskln g Lorem aosduinf hsdlf kldhsf lkjsdfhopashdfohdsohf'h s'kdhnf'kdnlnf 'lksdnfg nkldskn fngkslkdn gnkflsd'glfdskln g Lorem aosduinf hsdlf kldhsf lkjsdfhopashdfohdsohf'h s'kdhnf'kdnlnf 'lksdnfg nkldskn fngkslkdn gnkflsd'glfdskln g");
+    const [messageAddRes, setMessageAddRes] = React.useState("");
+    const [messageText, setMessageText] = React.useState("");
     const [addRes, setAddRes] = React.useState("");
     const [dateBirthday, setDateBirthday] = React.useState("");
     const [name, setName] = React.useState("");
