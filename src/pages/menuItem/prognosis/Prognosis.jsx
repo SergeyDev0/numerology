@@ -8,8 +8,9 @@ import { useTranslation } from "react-i18next";
 import authStore from "../../../stores/authStore";
 import SendIcon from "../../../assets/send.svg";
 import styles from "../MenuItem.module.scss";
+import { observer } from "mobx-react-lite";
 
-const Prognosis = () => {
+const Prognosis = observer(() => {
     const { t } = useTranslation();
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [isAddResClick, setIsAddResClick] = React.useState(false);
@@ -65,36 +66,38 @@ const Prognosis = () => {
             text: `Составь подробный и развернутый нумерологический прогноз на сегодня / на месяц для человека по имени ${name}, родившегося ${dateBirthday}. Прогноз должен включать анализ личных чисел дня, международных чисел жизненного пути на события и ситуации дня, а Также рекомендации для достижения гармонии и достижения результатов. Прогноз должен основываться на числах текущего дня и специфике дня недели, с акцентом на последующих шагах по самореализации и улучшению эмоционального состояния».`,
         };
 
-        fetch("https://numerology-ai.ru/user/api/Promt", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${authStore.accessToken}`,
-            },
-            body: JSON.stringify(data),
-        })
-            .then(async (response) => {
-                // Проверяем тип контента
-                const contentType = response.headers.get("Content-Type");
+        if (name !== "") {
+            fetch("https://numerology-ai.ru/user/api/Promt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authStore.accessToken}`,
+                },
+                body: JSON.stringify(data),
+            })
+                .then(async (response) => {
+                    // Проверяем тип контента
+                    const contentType = response.headers.get("Content-Type");
 
-                if (contentType.includes("application/json")) {
-                    // Если приходит JSON
-                    return await response.json();
-                } else if (contentType.includes("text/plain")) {
-                    // Если приходит plain text
-                    return await response.text();
-                } else {
-                    throw new Error("Unknown response format");
-                }
-            })
-            .then((data) => {
-                setMessageText(data.response);
-                setIsSendReq(true);
-                console.log(data.response);
-            })
-            .catch((error) => {
-                console.error("Error:", error.message);
-            });
+                    if (contentType.includes("application/json")) {
+                        // Если приходит JSON
+                        return await response.json();
+                    } else if (contentType.includes("text/plain")) {
+                        // Если приходит plain text
+                        return await response.text();
+                    } else {
+                        throw new Error("Unknown response format");
+                    }
+                })
+                .then((data) => {
+                    setMessageText(data.response);
+                    setIsSendReq(true);
+                    console.log(data.response);
+                })
+                .catch((error) => {
+                    console.error("Error:", error.message);
+                });
+        }
     };
     return (
         <Layout>
@@ -144,12 +147,19 @@ const Prognosis = () => {
                                     </div>
                                 </div>
                                 <div className={styles.btnWrapper}>
-                                    <ButtonSolid
-                                        button={"true"}
-                                        type="submit"
-                                        text={t("calculate")}
-                                        onClick={(e) => handleSubmit(e)}
-                                    />
+                                    {authStore.accessToken ? (
+                                        <ButtonSolid
+                                            button={"true"}
+                                            type="submit"
+                                            text={t("calculate")}
+                                            onClick={(e) => handleSubmit(e)}
+                                        />
+                                    ) : (
+                                        <ButtonSolid
+                                            url="/auth"
+                                            text={t("calculate")}
+                                        />
+                                    )}
                                 </div>
                             </>
                         ) : (
@@ -200,28 +210,46 @@ const Prognosis = () => {
                                                         type="text"
                                                         placeholder="Введите дополнительный запрос"
                                                         onChange={(e) => {
-                                                            setAddRes(e.target.value);
+                                                            setAddRes(
+                                                                e.target.value
+                                                            );
                                                         }}
                                                     />
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setIsShowAddRes(false);
-                                                            setMessageAddRes("");
-                                                            setIsAddResClick(false);
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsAddResClick(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
                                                     {!messageAddRes && (
                                                         <button
                                                             button={"true"}
-                                                            className={styles.addButton}
+                                                            className={
+                                                                styles.addButton
+                                                            }
                                                             onClick={(e) => {
-                                                                postAddResponse(e);
-                                                                setIsShowAddRes(true);
+                                                                postAddResponse(
+                                                                    e
+                                                                );
+                                                                setIsShowAddRes(
+                                                                    true
+                                                                );
                                                             }}
                                                         >
                                                             <img
@@ -234,18 +262,30 @@ const Prognosis = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <div className={styles.textWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.textWrapper
+                                                    }
+                                                >
                                                     <Markdown>
                                                         {messageAddRes}
                                                     </Markdown>
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setMessageAddRes("");
-                                                            setIsShowAddRes(false);
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
@@ -256,7 +296,9 @@ const Prognosis = () => {
                                                                 styles.addButton
                                                             }
                                                             onClick={(e) =>
-                                                                postAddResponse(e)
+                                                                postAddResponse(
+                                                                    e
+                                                                )
                                                             }
                                                         >
                                                             <img
@@ -278,6 +320,6 @@ const Prognosis = () => {
             <Wheel position="bottom" />
         </Layout>
     );
-};
+});
 
 export default Prognosis;

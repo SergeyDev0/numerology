@@ -10,8 +10,9 @@ import styles from "../MenuItem.module.scss";
 import authStore from "../../../stores/authStore";
 import AdditionalIcon from "../../../assets/additional.svg";
 import SendIcon from "../../../assets/send.svg";
+import { observer } from "mobx-react-lite";
 
-const Calendar = () => {
+const Calendar = observer(() => {
     const { t } = useTranslation();
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [startAnimation, setStartAnimation] = React.useState(false);
@@ -159,16 +160,23 @@ const Calendar = () => {
                                     </div>
                                 </div>
                                 <div className={styles.btnWrapper}>
-                                    <ButtonSolid
-                                        button={"true"}
-                                        type="submit"
-                                        text={t("calculate")}
-                                        onClick={(e) => {
-                                            handleSubmit(e);
-                                            if (name !== "")
-                                                setStartAnimation(true);
-                                        }}
-                                    />
+                                    {authStore.accessToken ? (
+                                        <ButtonSolid
+                                            button={"true"}
+                                            type="submit"
+                                            text={t("calculate")}
+                                            onClick={(e) => {
+                                                handleSubmit(e);
+                                                if (name !== "")
+                                                    setStartAnimation(true);
+                                            }}
+                                        />
+                                    ) : (
+                                        <ButtonSolid
+                                            url="/auth"
+                                            text={t("calculate")}
+                                        />
+                                    )}
                                 </div>
                             </>
                         ) : (
@@ -330,6 +338,6 @@ const Calendar = () => {
             <Wheel position="bottom" />
         </Layout>
     );
-};
+});
 
 export default Calendar;

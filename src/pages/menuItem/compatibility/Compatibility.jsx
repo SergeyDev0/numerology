@@ -9,8 +9,9 @@ import styles from "../MenuItem.module.scss";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 import authStore from "../../../stores/authStore";
+import { observer } from "mobx-react-lite";
 
-const Compatibility = () => {
+const Compatibility = observer(() => {
     const { t } = useTranslation();
     const [dateBirthday, setDateBirthday] = React.useState("");
     const [name, setName] = React.useState("");
@@ -24,7 +25,7 @@ const Compatibility = () => {
             text: `проведи Расширенный и детальный нумерологический анализ совместимости пар, Мужчина рожден ${dateBirthday} года имя ${name}, девушка рождена ${dateBirthday1} года имя ${name1}, анализ включающий описание их личных и жизненных чисел. В настоящее время они определяют свое предпочтение в романтических и семейных отношениях, а также в том, как их энергия взаимодействует с другими жизненными понятиями, такими как дружба, работа и духовное развитие. Основывай свой анализ чисел: Число жизненных путей каждого из партнеров и его влияние на характер, цели и мировоззрение. Число судьбы (судьбоносное число) и то, как оно отражается на основных чертах личности каждого человека. Размер выражений (внешнего проявления), подчеркивая, как каждый из них выглядит и как его воспринимают окружающие. Число души, которое раскроет скрытые желания, мечты и мотивацию каждого партнера. Дайте подробный обзор совместимости этих цифр и описаний, какие аспекты имеют значение, и какие могут быть вызваны на должность. Предоставь рекомендации по тому, как каждый партнер может взаимодействовать с другим, чтобы построить крепкие, устойчивые взаимные и обогащающие отношения. Если возможны ошибочные советы, основанные на их нумерологических характеристиках, также укажите их.`,
         };
 
-        if ((name1 !== "") && (name !== "")) {
+        if (name1 !== "" && name !== "") {
             fetch("https://numerology-ai.ru/user/api/Promt", {
                 method: "POST",
                 headers: {
@@ -62,6 +63,7 @@ const Compatibility = () => {
         setName1("");
         setDateBirthday("");
         setDateBirthday1("");
+        setMessageText("");
     }
     return (
         <Layout>
@@ -137,16 +139,23 @@ const Compatibility = () => {
                                 </div>
                             </div>
                             <div className={styles.btnWrapper}>
-                                <ButtonSolid
-                                    text={t("calculate")}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        if ((name1 !== "") && (name !== "")) {
-                                            setIsShowAddRes(true);
-                                            handleSubmit();
-                                        }
-                                    }}
-                                />
+                                {authStore.accessToken ? (
+                                    <ButtonSolid
+                                        text={t("calculate")}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            if (name1 !== "" && name !== "") {
+                                                setIsShowAddRes(true);
+                                                handleSubmit();
+                                            }
+                                        }}
+                                    />
+                                ) : (
+                                    <ButtonSolid
+                                        url="/auth"
+                                        text={t("calculate")}
+                                    />
+                                )}
                             </div>
                         </>
                     ) : (
@@ -154,7 +163,7 @@ const Compatibility = () => {
                             <div className={styles.inputsWrapper}>
                                 <div className={styles.response}>
                                     <Markdown>
-                                        {   messageText
+                                        {messageText
                                             ? messageText
                                             : "Подождите"}
                                     </Markdown>
@@ -177,6 +186,6 @@ const Compatibility = () => {
             <Wheel position="center" />
         </Layout>
     );
-};
+});
 
 export default Compatibility;

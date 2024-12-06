@@ -8,12 +8,13 @@ import { useTranslation } from "react-i18next";
 import authStore from "../../../stores/authStore";
 import SendIcon from "../../../assets/send.svg";
 import styles from "../MenuItem.module.scss";
+import { observer } from "mobx-react-lite";
 
-const Matrix = () => {
+const Matrix = observer(() => {
     const { t } = useTranslation();
     const [isSendReq, setIsSendReq] = React.useState(false);
     const [isAddResClick, setIsAddResClick] = React.useState(false);
-    const [isShowAddRes, setIsShowAddRes] = React.useState(true);
+    const [isShowAddRes, setIsShowAddRes] = React.useState(false);
     const [messageAddRes, setMessageAddRes] = React.useState("");
     const [messageText, setMessageText] = React.useState("");
     const [addRes, setAddRes] = React.useState("");
@@ -65,36 +66,38 @@ const Matrix = () => {
             text: `Составь подробный нумерологический анализ матрицы судьбы на основе даты рождения и имени. Меня интересуют такие аспекты, как предназначение, кармические задачи, сильные и слабые стороны, а также советы по личностному развитию. Вот данные, которые нужно учесть: Дата рождения: ${dateBirthday}. Полное имя на русском ${name} Задачи на будущее, с которыми хотелось бы разобраться, например: предназначение в карьере, благоприятные периоды для создания семьи и бизнеса, области, где человек может развиваться наиболее успешно. Если возможно, сделай акцент на следующих моментах: Кармические долги и как их можно отработать Какие энергии поддерживают человека в трудные периоды Число жизненного пути и как оно проявляется Подсказки по числу души, внешнему числу, а также рекомендация по отношению к текущему году и предстоящему году (личному году по нумерологическому циклу) Также добавь советы по усилению сильных сторон и проработке слабых качеств, если они есть. Приведи пример действий, которые можно предпринять для гармонизации энергетики и улучшения общей жизненной ситуации`,
         };
 
-        fetch("https://numerology-ai.ru/user/api/Promt", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${authStore.accessToken}`,
-            },
-            body: JSON.stringify(data),
-        })
-            .then(async (response) => {
-                // Проверяем тип контента
-                const contentType = response.headers.get("Content-Type");
+        if (name !== "") {
+            fetch("https://numerology-ai.ru/user/api/Promt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authStore.accessToken}`,
+                },
+                body: JSON.stringify(data),
+            })
+                .then(async (response) => {
+                    // Проверяем тип контента
+                    const contentType = response.headers.get("Content-Type");
 
-                if (contentType.includes("application/json")) {
-                    // Если приходит JSON
-                    return await response.json();
-                } else if (contentType.includes("text/plain")) {
-                    // Если приходит plain text
-                    return await response.text();
-                } else {
-                    throw new Error("Unknown response format");
-                }
-            })
-            .then((data) => {
-                setMessageText(data.response);
-                setIsSendReq(true);
-                console.log(data.response);
-            })
-            .catch((error) => {
-                console.error("Error:", error.message);
-            });
+                    if (contentType.includes("application/json")) {
+                        // Если приходит JSON
+                        return await response.json();
+                    } else if (contentType.includes("text/plain")) {
+                        // Если приходит plain text
+                        return await response.text();
+                    } else {
+                        throw new Error("Unknown response format");
+                    }
+                })
+                .then((data) => {
+                    setMessageText(data.response);
+                    setIsSendReq(true);
+                    console.log(data.response);
+                })
+                .catch((error) => {
+                    console.error("Error:", error.message);
+                });
+        }
     };
     return (
         <Layout>
@@ -144,12 +147,21 @@ const Matrix = () => {
                                     </div>
                                 </div>
                                 <div className={styles.btnWrapper}>
-                                    <ButtonSolid
-                                        button={"true"}
-                                        type="submit"
-                                        text={t("calculate")}
-                                        onClick={(e) => handleSubmit(e)}
-                                    />
+                                    {authStore.accessToken ? (
+                                        <ButtonSolid
+                                            button={"true"}
+                                            type="submit"
+                                            text={t("calculate")}
+                                            onClick={(e) => {
+                                                handleSubmit(e);
+                                            }}
+                                        />
+                                    ) : (
+                                        <ButtonSolid
+                                            url="/auth"
+                                            text={t("calculate")}
+                                        />
+                                    )}
                                 </div>
                             </>
                         ) : (
@@ -200,28 +212,46 @@ const Matrix = () => {
                                                         type="text"
                                                         placeholder="Введите дополнительный запрос"
                                                         onChange={(e) => {
-                                                            setAddRes(e.target.value);
+                                                            setAddRes(
+                                                                e.target.value
+                                                            );
                                                         }}
                                                     />
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setIsShowAddRes(false);
-                                                            setMessageAddRes("");
-                                                            setIsAddResClick(false);
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsAddResClick(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
                                                     {!messageAddRes && (
                                                         <button
                                                             button={"true"}
-                                                            className={styles.addButton}
+                                                            className={
+                                                                styles.addButton
+                                                            }
                                                             onClick={(e) => {
-                                                                postAddResponse(e);
-                                                                setIsShowAddRes(true);
+                                                                postAddResponse(
+                                                                    e
+                                                                );
+                                                                setIsShowAddRes(
+                                                                    true
+                                                                );
                                                             }}
                                                         >
                                                             <img
@@ -234,18 +264,30 @@ const Matrix = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <div className={styles.textWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.textWrapper
+                                                    }
+                                                >
                                                     <Markdown>
                                                         {messageAddRes}
                                                     </Markdown>
                                                 </div>
-                                                <div className={styles.btnWrapper}>
+                                                <div
+                                                    className={
+                                                        styles.btnWrapper
+                                                    }
+                                                >
                                                     <ButtonSolid
                                                         button={"true"}
                                                         onClick={(e) => {
                                                             e.preventDefault();
-                                                            setMessageAddRes("");
-                                                            setIsShowAddRes(false);
+                                                            setMessageAddRes(
+                                                                ""
+                                                            );
+                                                            setIsShowAddRes(
+                                                                false
+                                                            );
                                                         }}
                                                         text={t("back")}
                                                     />
@@ -256,7 +298,9 @@ const Matrix = () => {
                                                                 styles.addButton
                                                             }
                                                             onClick={(e) =>
-                                                                postAddResponse(e)
+                                                                postAddResponse(
+                                                                    e
+                                                                )
                                                             }
                                                         >
                                                             <img
@@ -278,6 +322,6 @@ const Matrix = () => {
             <Wheel position="bottom" />
         </Layout>
     );
-};
+});
 
 export default Matrix;

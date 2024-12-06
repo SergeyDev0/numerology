@@ -148,6 +148,15 @@
             width: auto;
         }
 
+        .btnWrapper {
+        
+            & > a {
+                @media screen and (min-width: 1000px) {
+                    font-size: 18px !important;
+                }
+            }
+        }
+
         &::before {
             content: "";
             position: absolute;
@@ -369,7 +378,7 @@
                     justify-content: center;
                 }
 
-                & > button {
+                & > button, & > a {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -444,6 +453,12 @@
     width: 120px;
 
     & > button {
+        @media screen and (min-width: 1000px) {
+            font-size: 18px !important;
+        }
+    }
+
+    & > a {
         @media screen and (min-width: 1000px) {
             font-size: 18px !important;
         }
