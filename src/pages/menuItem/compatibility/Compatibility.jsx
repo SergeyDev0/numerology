@@ -8,6 +8,7 @@ import ButtonSolid from "../../../components/buttonSolid/ButtonSolid";
 import styles from "../MenuItem.module.scss";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
+import authStore from "../../../stores/authStore";
 
 const Compatibility = () => {
     const { t } = useTranslation();
