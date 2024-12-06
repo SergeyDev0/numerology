@@ -57,7 +57,7 @@ const Subscribe = () => {
                     <li className={styles.item}>{t("SubscribeItem4")}</li>
                     <li className={styles.item}>{t("SubscribeItem5")}</li>
                 </ul>
-                <ButtonSolid url="/" text={t("SubscribeBtn")} onClick={handleClick} />
+                <div className={styles.subscribeBtn}><ButtonSolid url="/" text={t("SubscribeBtn")} onClick={handleClick} /></div>
             </main>
             <Wheel position="center" />
         </Layout>

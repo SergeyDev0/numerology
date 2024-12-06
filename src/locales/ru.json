@@ -34,5 +34,6 @@
     "addResponse": "add. response",
 	"DateBirth": "Дата рождения",
     "Name": "Имя",
-    "yourName": "Ваше имя"
+    "yourName": "Ваше имя",
+    "send": "Задать вопрос"
 }

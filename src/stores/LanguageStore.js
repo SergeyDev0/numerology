@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import i18n from './../i18n';
 
 class LanguageStore {
-  language = 'en';
+  language = 'ru';
 
   constructor() {
     makeAutoObservable(this);
