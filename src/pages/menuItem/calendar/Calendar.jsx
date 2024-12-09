@@ -220,6 +220,7 @@ const Calendar = observer(() => {
                       <>
                         <div className={styles.textWrapper}>
                           <textarea
+													className={styles.textArea}
                             id="addinput"
                             type="text"
                             placeholder="Введите дополнительный запрос"

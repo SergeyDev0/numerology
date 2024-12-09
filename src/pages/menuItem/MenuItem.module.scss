@@ -144,7 +144,7 @@
     }
 
     @media screen and (min-width: 1200px) {
-      height: 60vh;
+      height: 62vh;
       width: auto;
     }
 
@@ -307,13 +307,13 @@
       }
 
       @media screen and (min-width: 1200px) {
-        height: 72vh;
+        height: 65vh;
         width: auto;
         padding-top: 8rem;
       }
 
       @media screen and (min-width: 1200px) and (min-height: 800px) {
-        padding-top: 12rem;
+        padding-top: 11rem;
       }
 
       & .textWrapper {
@@ -359,6 +359,26 @@
           }
         }
       }
+
+			.inputWrapper {
+				@media screen and (min-width: 1400px) {
+					width: 350px;
+				}
+			}
+
+			& .textArea {
+				padding: 10px;
+				width: 100%;
+				word-wrap: break-word;
+				word-break: break-all;
+				height: 100%;
+				outline: none;
+				font-size: clamp(15px, 4vw, 18px);
+
+				@media screen and (min-width: 400px) {
+					
+				}
+			}
 
 			& .btnWrapper {
         margin-top: 1rem;
