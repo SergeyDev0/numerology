@@ -56,6 +56,7 @@ const Subscribe = () => {
                     <li className={styles.item}>{t("SubscribeItem3")}</li>
                     <li className={styles.item}>{t("SubscribeItem4")}</li>
                     <li className={styles.item}>{t("SubscribeItem5")}</li>
+                    <li className={styles.item}>{t("SubscribeItem6")}</li>
                 </ul>
                 <div className={styles.subscribeBtn}><ButtonSolid url="/" text={t("SubscribeBtn")} onClick={handleClick} /></div>
             </main>

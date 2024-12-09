@@ -44,11 +44,11 @@ main {
         width: 100%;
         height: 100%;
         background-size: cover;
-        background-image: url(../assets/background.jpg);
+        background-image: url(../assets/background.webp);
         background-position: center;
 
         @media screen and (min-width: 900px) {
-            background-image: url(../assets/background-big.jpg);
+            background-image: url(../assets/background-big.webp);
         }
     }
 }

@@ -13,6 +13,7 @@ import Periods from "./pages/menuItem/periods/Periods";
 import authStore from "./stores/authStore";
 import PrivacyPolicy from "./pages/policy/PrivacyPolicy";
 import TermsAgreement from "./pages/policy/TermsAgreement";
+import Test from "./pages/test/Test";
 
 function App() {
   React.useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/registration" element={<Reg />} />
         <Route path="/subscribe" element={<Subscribe />} />
+        <Route path="/test" element={<Test />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/matrix" element={<Matrix />} />
         <Route path="/calendar" element={<Calendar />} />

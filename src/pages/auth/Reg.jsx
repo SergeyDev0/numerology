@@ -53,7 +53,7 @@ const Reg = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <Input
-                        text={t("password")}
+                        text={t("passwordValid")}
                         id="password"
                         onChange={(e) => setPassword(e.target.value)}
                         type="password"

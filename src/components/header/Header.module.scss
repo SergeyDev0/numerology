@@ -1,84 +1,60 @@
 .header {
+  width: 100%;
+
+  &Wrapper {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &Nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  &Back {
+    width: 30px;
+
+    @media screen and (min-width: 400px) {
+      width: fit-content;
+      padding-right: 22px;
+    }
+
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.mobile {
+      @media screen and (min-width: 400px) {
+        display: none;
+      }
+    }
 
     &Wrapper {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      width: 100%;
     }
 
-    &Nav {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
+    &.desktop {
+      font-size: 14px;
+      position: relative;
+      padding-left: 22px;
+      width: fit-content;
+
+			@media screen and (max-width: 400px) {
+        display: none;
+      }
+
+      @media screen and (min-width: 600px) {
+        font-size: 20px;
+      } 
+			
+			@media screen and (max-width: 400px) {
+        display: none;
+      }
     }
-
-    &Back {
-        width: 30px;
-
-        @media screen and (min-width: 400px) {
-            width: fit-content;
-            padding-right: 22px;
-        }
-        
-        & > img {
-            width: 100%;
-            height: 100%;
-        }
-
-        & .mobile {
-            @media screen and (min-width: 400px) {
-                display: none;
-            }
-        }
-
-        &Wrapper {
-            width: 100%;
-        }
-
-        & .desktop {
-            font-size: 14px;
-            position: relative;
-            padding-left: 22px;
-            width: fit-content;
-
-            @media screen and (min-width: 600px) {
-                font-size: 20px;
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                left: calc(100% + 5px);
-                top: 0;
-                bottom: 0;
-                margin: auto;
-                width: 17px;
-                height: 23px;
-                background-image: url(../../assets/starlist.png);
-                background-size: contain;
-                background-repeat: no-repeat;
-            }
-        
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0px;
-                top: 0;
-                bottom: 0;
-                margin: auto;
-                width: 17px;
-                height: 23px;
-                background-image: url(../../assets/starlist.png);
-                background-size: contain;
-                background-repeat: no-repeat;
-            }
-
-            @media screen and (max-width: 400px) {
-                display: none;
-            }
-        }
-    }
+  }
 }

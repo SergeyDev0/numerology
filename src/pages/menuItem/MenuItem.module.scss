@@ -1,714 +1,745 @@
 .main {
-    height: calc(100% - 125px);
+  height: calc(100% - 125px);
 
-    @media screen and (min-width: 900px) {
-        height: calc(100% - 90px);
-    }
+  @media screen and (min-width: 900px) {
+    height: calc(100% - 90px);
+  }
 }
 
 .mainCompatibility {
-    height: calc(100% - 190px);
+  height: calc(100% - 190px);
 
-    @media screen and (min-width: 1400px){
-        height: calc(100% - 230px);
+  @media screen and (min-width: 1400px) {
+    height: calc(100% - 230px);
+  }
+
+  @media screen and (max-width: 600px) {
+    height: calc(100% - 152px);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url(../../assets/background-pink.webp);
+    background-position: center;
+
+    @media screen and (min-width: 900px) {
+      background-image: url(../../assets/background-big-pink.webp);
     }
-
-    @media screen and (max-width: 600px){
-        height: calc(100% - 152px);
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-image: url(../../assets/background-pink.png);
-        background-position: center;
-
-        @media screen and (min-width: 900px) {
-            background-image: url(../../assets/background-big-pink.jpg);
-        }
-    }
+  }
 }
 
 .inputWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 170px;
+
+  @media screen and (min-width: 450px) {
+    width: 200px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    width: 300px;
+  }
+
+  & input {
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+
+    &::placeholder {
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
+  & label {
+    font-size: 14px;
+    font-weight: 300;
 
     @media screen and (min-width: 450px) {
-        width: 200px;
+      font-size: 16px;
     }
 
     @media screen and (min-width: 1400px) {
-        width: 300px;
+      font-size: 18px;
+    }
+  }
+
+  & .input {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      padding: 1px; /* the border thickness */
+      border-radius: 10px;
+      background: linear-gradient(
+        90deg,
+        #997141 0%,
+        #f6c37f 33.4%,
+        #9d7444 100%
+      );
+      mask: linear-gradient(#000 0 0) exclude,
+        linear-gradient(#000 0 0) content-box;
+    }
+
+    @media screen and (min-width: 450px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     & input {
-        width: 100%;
-        height: 24px;
-        text-align: center;
-        font-size: 12px;
-        font-weight: 300;
+      @media screen and (min-width: 450px) {
+        height: 32px;
+      }
 
-        &::placeholder {
-            text-align: center;
-            font-size: 12px;
-        }
-    }
+      @media screen and (min-width: 1400px) {
+        height: 35px;
+        font-size: 16px;
+      }
 
-    & label {
-        font-size: 14px;
-        font-weight: 300;
-
-        @media screen and (min-width: 450px) {
-            font-size: 16px;
-        }
-
+      &::placeholder {
         @media screen and (min-width: 1400px) {
-            font-size: 18px;
+          height: 35px;
+          font-size: 16px;
         }
+      }
     }
-
-    & .input {
-        position: relative;
-
-        &::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            inset: 0;
-            padding: 1px; /* the border thickness */
-            border-radius: 10px;
-            background: linear-gradient(
-                90deg,
-                #997141 0%,
-                #f6c37f 33.4%,
-                #9d7444 100%
-            );
-            mask: linear-gradient(#000 0 0) exclude,
-                linear-gradient(#000 0 0) content-box;
-        }
-
-        @media screen and (min-width: 450px) {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        & input {
-            @media screen and (min-width: 450px) {
-                height: 32px;
-            }
-
-            @media screen and (min-width: 1400px) {
-                height: 35px;
-                font-size: 16px;
-            }
-
-            &::placeholder {
-                @media screen and (min-width: 1400px) {
-                    height: 35px;
-                    font-size: 16px;
-                }
-            }
-        }
-    }
+  }
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+
+  & .matrix {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-top: 30px;
-
-    & .matrix {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        text-align: center;
-        gap: 20px;
-        aspect-ratio: 1 / 1;
-
-        @media screen and (min-width: 560px) {
-            width: 400px;
-        }
-
-        @media screen and (min-width: 1200px) {
-            height: 60vh;
-            width: auto;
-        }
-
-        .btnWrapper {
-        
-            & > a {
-                @media screen and (min-width: 1000px) {
-                    font-size: 18px !important;
-                }
-            }
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(../../assets/matrix.png);
-            z-index: -1;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-        }
-
-        & .textWrapper {
-            @media screen and (min-width: 1200px) and (min-height: 750px) {
-                height: 55%;
-            }
-        }
-
-        &.response {
-            justify-content: flex-end;
-            gap: 0;
-            padding-bottom: 15%;
-
-            @media screen and (min-width: 560px) {
-                justify-content: flex-end;
-                width: 400px;
-                padding-bottom: 3.5rem;
-            }
-
-            @media screen and (min-width: 1200px) {
-                height: 60vh;
-                width: auto;
-            }
-
-            @media screen and (min-width: 1200px) and (min-height: 750px) {
-                padding-bottom: 5.5rem;
-            }
-
-            & .btnWrapper {
-                margin-top: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
-                width: 100%;
-                height: 31px;
-                padding: 0 7px;
-
-                & > .button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 7px;
-                    color: #fff;
-                    border-radius: 10px;
-                    background: linear-gradient(
-                        90deg,
-                        #f6c37f 0%,
-                        #9d7444 49%,
-                        #f6c37f 100%
-                    );
-                    font-size: 14px;
-                    font-weight: 500;
-                    height: 31px;
-                    display: flex;
-                    justify-content: center;
-                }
-
-                & > button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 7px;
-                    width: auto;
-                    color: #fff;
-                    border-radius: 10px;
-                    background: linear-gradient(
-                        90deg,
-                        #f6c37f 0%,
-                        #9d7444 49%,
-                        #f6c37f 100%
-                    );
-                    font-size: 14px;
-                    font-weight: 500;
-                    height: 31px;
-                    display: flex;
-                    justify-content: center;
-
-                    & > img {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
-        }
-
-        &Calendar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            width: 100%;
-            text-align: center;
-            gap: 8px;
-            padding-top: 6rem;
-            aspect-ratio: 1 / 1;
-            position: relative;
-
-            @media screen and (max-width: 380px) {
-                padding-top: 5rem;
-            }
-
-            @media screen and (min-width: 450px) {
-                justify-content: center;
-                width: 400px;
-            }
-
-            @media screen and (min-width: 450px) {
-                padding-top: 8rem;
-            }
-
-            @media screen and (min-width: 1200px) {
-                height: 60vh;
-                width: auto;
-                padding-top: 8rem;
-            }
-
-            @media screen and (min-width: 1200px) and (min-height: 800px) {
-                padding-top: 9rem;
-            }
-
-            & .textWrapper {
-                height: 45%;
-            }
-
-            &::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url(../../assets/calendar-matrix.png);
-                z-index: -1;
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-            }
-
-            & label {
-                @media screen and (min-width: 450px) {
-                    font-size: 16px;
-                }
-
-                @media screen and (min-width: 1200px) {
-                    font-size: 18px;
-                }
-
-                @media screen and (max-width: 380px) {
-                    display: none;
-                }
-            }
-
-            & input {
-                @media screen and (min-width: 1200px) {
-                    height: 40px;
-                    font-size: 18px;
-                }
-
-                &::placeholder {
-                    @media screen and (min-width: 1200px) {
-                        font-size: 18px;
-                    }
-                }
-            }
-
-            & button {
-                @media screen and (min-width: 1200px) {
-                    margin-top: 0.5rem;
-                }
-            }
-
-            & .additional {
-                padding-bottom: 16%;
-            }
-
-            & .btnWrapper {
-                margin-top: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
-                width: 100%;
-                height: 31px;
-                padding: 0 7px;
-
-                @media screen and (max-width: 600px) {
-                    margin-top: 0;
-                }
-
-                & > .button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 7px;
-                    color: #fff;
-                    border-radius: 10px;
-                    background: linear-gradient(
-                        90deg,
-                        #f6c37f 0%,
-                        #9d7444 49%,
-                        #f6c37f 100%
-                    );
-                    font-size: 14px;
-                    font-weight: 500;
-                    height: 31px;
-                    display: flex;
-                    justify-content: center;
-                }
-
-                & > button, & > a {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 7px;
-                    width: auto;
-                    color: #fff;
-                    border-radius: 10px;
-                    background: linear-gradient(
-                        90deg,
-                        #f6c37f 0%,
-                        #9d7444 49%,
-                        #f6c37f 100%
-                    );
-                    font-size: 14px;
-                    font-weight: 500;
-                    height: 31px;
-                    display: flex;
-                    justify-content: center;
-
-                    & > img {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.areaWrapper {
+    justify-content: center;
     position: relative;
-    height: 80px;
     width: 100%;
-    margin-bottom: 20px;
+    text-align: center;
+    gap: 20px;
+    aspect-ratio: 1 / 1;
 
-    & textarea {
-        padding: 10px;
-        width: 100%;
-        word-wrap: break-word;
-        word-break: break-all;
-        height: 100%;
-        outline: none;
-        font-size: 12px;
+    @media screen and (min-width: 560px) {
+      width: 400px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      height: 60vh;
+      width: auto;
+    }
+
+    & label {
+      @media screen and (min-width: 450px) {
+        font-size: 16px;
+      }
+
+      @media screen and (min-width: 1200px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 380px) {
+        display: none;
+      }
+    }
+
+    & input {
+      @media screen and (min-width: 1200px) {
+        height: 40px;
+        font-size: 18px;
+      }
+
+      &::placeholder {
+        @media screen and (min-width: 1200px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .btnWrapper {
+      & > a {
+        @media screen and (min-width: 1000px) {
+          font-size: 18px !important;
+        }
+      }
     }
 
     &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(../../assets/matrix.png);
+      z-index: -1;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    & .textWrapper {
+      @media screen and (min-width: 1200px) and (min-height: 750px) {
+        height: 55%;
+      }
+    }
+
+    &.response {
+      justify-content: flex-end;
+      gap: 0;
+      padding-bottom: 13%;
+
+      @media screen and (min-width: 560px) {
+        justify-content: flex-end;
+        width: 400px;
+        padding-bottom: 3.5rem;
+      }
+
+      @media screen and (min-width: 1200px) {
+        height: 60vh;
+        width: auto;
+      }
+
+      @media screen and (min-width: 1200px) and (min-height: 750px) {
+        padding-bottom: 5.5rem;
+      }
+
+      & .btnWrapper {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        height: 31px;
+        padding: 0 7px;
+
+        & > .button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px;
+          color: #fff;
+          border-radius: 10px;
+          background: linear-gradient(
+            90deg,
+            #f6c37f 0%,
+            #9d7444 49%,
+            #f6c37f 100%
+          );
+          font-size: 14px;
+          font-weight: 500;
+          height: 31px;
+          display: flex;
+          justify-content: center;
+        }
+
+        & > button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px;
+          width: auto;
+          color: #fff;
+          border-radius: 10px;
+          background: linear-gradient(
+            90deg,
+            #f6c37f 0%,
+            #9d7444 49%,
+            #f6c37f 100%
+          );
+          font-size: 14px;
+          font-weight: 500;
+          height: 31px;
+          display: flex;
+          justify-content: center;
+
+          & > img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    &Calendar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      text-align: center;
+      gap: 8px;
+      padding-top: 6rem;
+      aspect-ratio: 1 / 1;
+      position: relative;
+
+      @media screen and (max-width: 380px) {
+        padding-top: 5rem;
+      }
+
+      @media screen and (min-width: 450px) {
+        justify-content: center;
+        width: 400px;
+      }
+
+      @media screen and (min-width: 450px) {
+        padding-top: 8rem;
+      }
+
+      @media screen and (min-width: 1200px) {
+        height: 72vh;
+        width: auto;
+        padding-top: 8rem;
+      }
+
+      @media screen and (min-width: 1200px) and (min-height: 800px) {
+        padding-top: 12rem;
+      }
+
+      & .textWrapper {
+        height: 45%;
+      }
+
+      &::before {
         content: "";
         position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/calendar-matrix.png);
         z-index: -1;
-        inset: 0;
-        padding: 1px; /* the border thickness */
-        border-radius: 10px;
-        background: linear-gradient(
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+      & label {
+        @media screen and (min-width: 450px) {
+          font-size: 16px;
+        }
+
+        @media screen and (min-width: 1200px) {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: 380px) {
+          display: none;
+        }
+      }
+
+      & input {
+        @media screen and (min-width: 1200px) {
+          height: 40px;
+          font-size: 18px;
+        }
+
+        &::placeholder {
+          @media screen and (min-width: 1200px) {
+            font-size: 18px;
+          }
+        }
+      }
+
+			& .btnWrapper {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 120px;
+        height: 31px;
+        padding: 0 7px;
+
+				@media screen and (max-width: 450px) {
+					margin-top: 0;
+				}
+
+        & > .button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px;
+          color: #fff;
+          border-radius: 10px;
+          background: linear-gradient(
             90deg,
-            #997141 0%,
-            #f6c37f 33.4%,
-            #9d7444 100%
-        );
-        mask: linear-gradient(#000 0 0) exclude,
-            linear-gradient(#000 0 0) content-box;
+            #f6c37f 0%,
+            #9d7444 49%,
+            #f6c37f 100%
+          );
+          font-size: 14px;
+          font-weight: 500;
+          height: 31px;
+          display: flex;
+          justify-content: center;
+					white-space: nowrap;
+        }
+
+        & > button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px;
+          width: auto;
+          color: #fff;
+          border-radius: 10px;
+          background: linear-gradient(
+            90deg,
+            #f6c37f 0%,
+            #9d7444 49%,
+            #f6c37f 100%
+          );
+          font-size: 14px;
+          font-weight: 500;
+          height: 31px;
+          display: flex;
+          justify-content: center;
+
+          & > img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
+  }
+}
+
+.areaWrapper {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  & textarea {
+    padding: 10px;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 100%;
+    outline: none;
+    font-size: 12px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 1px; /* the border thickness */
+    border-radius: 10px;
+    background: linear-gradient(90deg, #997141 0%, #f6c37f 33.4%, #9d7444 100%);
+    mask: linear-gradient(#000 0 0) exclude,
+      linear-gradient(#000 0 0) content-box;
+  }
 }
 
 .wrapperBtns {
-    display: flex;
-    gap: 17px;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  gap: 17px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .btnWrapper {
-    width: 120px;
+  width: 120px;
 
-    & > button {
-        @media screen and (min-width: 1000px) {
-            font-size: 18px !important;
-        }
+  & > button {
+    @media screen and (min-width: 1000px) {
+      font-size: 18px !important;
     }
+  }
 
-    & > a {
-        @media screen and (min-width: 1000px) {
-            font-size: 18px !important;
-        }
+  & > a {
+    @media screen and (min-width: 1000px) {
+      font-size: 18px !important;
     }
+  }
 }
 
 .textWrapper {
-    width: 64%;
-    text-align: left;
-    height: 55%;
-    overflow: auto;
-    aspect-ratio: 1 / 1;
-    font-size: clamp(15px, 4vw, 20px);
+  width: 64%;
+  text-align: left;
+  height: 55%;
+  overflow: auto;
+  aspect-ratio: 1 / 1;
+  font-size: clamp(15px, 4vw, 18px);
 
-    @media screen and (min-width: 1200px) and (min-height: 750px) {
-        height: 45%;
-    }
+  @media screen and (min-width: 1200px) and (min-height: 750px) {
+    height: 45%;
+  }
 }
 
 .calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  top: 8.5%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 28%;
+
+  & h3 {
+    height: 25%;
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    color: #f6c37f;
+    font-size: clamp(12px, 4vw, 25px);
+  }
+
+  &Loader {
+    position: relative;
+    height: 74%;
+
+    &.start {
+      & .matrixIcon {
+        animation: wheel infinite 4s linear;
+
+        @keyframes wheel {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
+      & .starIcon {
+        animation: star infinite 1.5s;
+
+        @keyframes star {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(0);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  & .matrixIcon {
     position: absolute;
-    top: 8.5%;
-    right: 0;
     left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
     margin: auto;
-    height: 28%;
+    width: 16%;
+  }
 
-    & h3 {
-        height: 25%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #f6c37f;
-        font-size: clamp(12px, 4vw, 25px);
+  & .starIcon {
+    height: 23px;
+    width: 17px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+
+    @media screen and (min-width: 1200px) {
+      height: 35px;
+      width: 29px;
     }
-
-    &Loader {
-        position: relative;
-        height: 74%;
-
-        &.start {
-            & .matrixIcon {
-                animation: wheel infinite 4s linear;
-
-                @keyframes wheel {
-                    0% {
-                        transform: rotate(0deg);
-                    }
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-            }
-
-            & .starIcon {
-                animation: star infinite 1.5s;
-
-                @keyframes star {
-                    0% {
-                        transform: scale(1);
-                    }
-                    50% {
-                        transform: scale(0);
-                    }
-                    100% {
-                        transform: scale(1);
-                    }
-                }
-            }
-        }
-    }
-
-    & .matrixIcon {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        top: 0;
-        right: 0;
-        margin: auto;
-        width: 16%;
-    }
-
-    & .starIcon {
-        height: 23px;
-        width: 17px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        top: 0;
-        right: 0;
-        margin: auto;
-
-        @media screen and (min-width: 1200px) {
-            height: 35px;
-            width: 29px;
-        }
-    }
+  }
 }
 
 .wrapperCompatibility {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+
+  & .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  & .genderWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-top: 15px;
+  }
 
-    & .col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
+  & .input {
+    @media screen and (min-width: 600px) {
+      height: 38px;
     }
 
-    & .genderWrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+    @media screen and (min-width: 1000px) {
+      height: 40px;
     }
 
-    & .input {
-        @media screen and (min-width: 600px) {
-            height: 38px;
-        }
-
-        @media screen and (min-width: 1000px) {
-            height: 40px;
-        }
-
-        @media screen and (min-width: 1200px) {
-            height: 50px;
-            font-size: 18px;
-        }
-
-        &::placeholder {
-            @media screen and (min-width: 1200px) {
-                font-size: 18px;
-            }
-        }
+    @media screen and (min-width: 1200px) {
+      height: 50px;
+      font-size: 18px;
     }
 
-    & .inputWrapper {
-        @media screen and (min-width: 600px) {
-            width: 300px;
-        }
+    & input::placeholder {
+      @media screen and (min-width: 1200px) {
+        font-size: 18px;
+      }
+    }
+  }
 
-        @media screen and (min-width: 1000px) {
-            width: 400px;
-        }
-
-        @media screen and (min-width: 1200px) {
-            width: 700px;
-        }
+  & input {
+    @media screen and (min-width: 600px) {
+      height: 38px;
     }
 
-    .btnAddResWrapper {
-        display: flex;
-        width: 100%;
-        gap: 10px;
-
-        @media screen and (min-width: 375px) {
-            flex-direction: row;
-            width: 315px;
-        }
-
-        & > a {
-            @media screen and (min-width: 600px) {
-                font-size: 20px;
-            }
-
-            @media screen and (min-width: 1000px) {
-                font-size: 24px;
-            }
-        }
+    @media screen and (min-width: 1000px) {
+      height: 40px;
     }
 
-    & .btnWrapper {
-        @media screen and (min-width: 1000px) {
-            width: 220px;
-        }
+    @media screen and (min-width: 1200px) {
+      height: 50px;
+      font-size: 18px;
+    }
+  }
 
-        @media screen and (min-width: 600px) {
-            width: 160px;
-        }
-        
-        & > a {
-            @media screen and (min-width: 600px) {
-                font-size: 20px;
-            }
-
-            @media screen and (min-width: 1000px) {
-                font-size: 24px;
-            }
-        }
+  & .inputWrapper {
+    @media screen and (min-width: 600px) {
+      width: 300px;
     }
 
-    .inputsWrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        position: relative;
-
-        &::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            inset: 0;
-            padding: 1px; /* the border thickness */
-            border-radius: 10px;
-            background: linear-gradient(
-                90deg,
-                #997141 0%,
-                #f6c37f 33.4%,
-                #9d7444 100%
-            );
-            mask: linear-gradient(#000 0 0) exclude,
-                linear-gradient(#000 0 0) content-box;
-        }
-
-        @media screen and (min-width: 375px) {
-            width: 315px;
-        }
+    @media screen and (min-width: 1000px) {
+      width: 400px;
     }
 
-    & .response {
-        height: 42vh;
-        padding: 10px;
-        overflow: auto;
+    @media screen and (min-width: 1200px) {
+      width: 700px;
     }
-}
+  }
 
-.additional {
-    height: 100%;
+  .btnAddResWrapper {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+
+    @media screen and (min-width: 375px) {
+      flex-direction: row;
+      width: 315px;
+    }
+
+    & > a {
+      @media screen and (min-width: 600px) {
+        font-size: 20px;
+      }
+
+      @media screen and (min-width: 1000px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  & .btnWrapper {
+    @media screen and (min-width: 1000px) {
+      width: 220px;
+    }
+
+    @media screen and (min-width: 600px) {
+      width: 160px;
+    }
+
+    & > a {
+      @media screen and (min-width: 600px) {
+        font-size: 20px;
+      }
+
+      @media screen and (min-width: 1000px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .inputsWrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
 
-    & .inputAdd {
-        height: 54%;
-        width: 64%;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      padding: 1px; /* the border thickness */
+      border-radius: 10px;
+      background: linear-gradient(
+        90deg,
+        #997141 0%,
+        #f6c37f 33.4%,
+        #9d7444 100%
+      );
+      mask: linear-gradient(#000 0 0) exclude,
+        linear-gradient(#000 0 0) content-box;
     }
 
-    & textarea {
-        height: 100%;
-        width: 100%;
+    @media screen and (min-width: 375px) {
+      width: 315px;
     }
+  }
+
+  & .response {
+    height: 42vh;
+    padding: 10px;
+    overflow: auto;
+  }
+}
+
+.additional {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  & .inputAdd {
+    height: 54%;
+    width: 64%;
+  }
+
+  & textarea {
+    height: 100%;
+    width: 100%;
+  }
+
+	& .textWrapper {
+		height: 58% !important;
+	}
 }

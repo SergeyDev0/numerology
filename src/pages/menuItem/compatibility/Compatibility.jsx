@@ -21,6 +21,7 @@ const Compatibility = observer(() => {
     const [name1, setName1] = React.useState("");
     const [isShowAddRes, setIsShowAddRes] = React.useState(false);
     const [messageText, setMessageText] = React.useState("");
+		const [isWaitRes, setIsWaitRes] = React.useState(false);
 
     let handleSubmit = async () => {
         let data = {
@@ -55,9 +56,11 @@ const Compatibility = observer(() => {
                         navigate("/subscribe");
                     }
                     setMessageText(data.response);
+										setIsWaitRes(false);
                 })
                 .catch((error) => {
                     console.error("Error:", error.message);
+										setIsWaitRes(false);
                 });
         }
     };
@@ -151,6 +154,7 @@ const Compatibility = observer(() => {
                                             if (name1 !== "" && name !== "") {
                                                 setIsShowAddRes(true);
                                                 handleSubmit();
+																								setIsWaitRes(true);
                                             }
                                         }}
                                     />
@@ -169,13 +173,13 @@ const Compatibility = observer(() => {
                                     <Markdown>
                                         {messageText
                                             ? messageText
-                                            : "Подождите"}
+                                            : ""}
                                     </Markdown>
                                 </div>
                             </div>
                             <div className={styles.btnAddResWrapper}>
                                 <ButtonSolid
-                                    text={t("back")}
+                                    text={isWaitRes ? t("loading") : t("back")}
                                     onClick={(e) => {
                                         e.preventDefault();
                                         setIsShowAddRes(false);
