@@ -3,13 +3,12 @@ import Layout from "../../../components/layout/Layout";
 import Wheel from "../../../components/wheel/Wheel";
 import ButtonSolid from "./../../../components/buttonSolid/ButtonSolid";
 import Markdown from "react-markdown";
-import AdditionalIcon from "../../../assets/additional.svg";
 import { useTranslation } from "react-i18next";
 import authStore from "../../../stores/authStore";
-import SendIcon from "../../../assets/send.svg";
 import styles from "../MenuItem.module.scss";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
+import { getCurrentDate } from './../../../utils/getCurrentDate';
 
 const Prognosis = observer(() => {
   const navigate = useNavigate();

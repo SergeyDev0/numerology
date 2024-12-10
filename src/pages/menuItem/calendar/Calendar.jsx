@@ -10,6 +10,7 @@ import styles from "../MenuItem.module.scss";
 import authStore from "../../../stores/authStore";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
+import { getCurrentDate } from './../../../utils/getCurrentDate';
 
 const Calendar = observer(() => {
   const navigate = useNavigate();
