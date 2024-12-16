@@ -94,14 +94,13 @@ legend {
 	display: block;
 }
 
-button, input, textarea {
+button, input, textarea, select {
   border: 0;
   background-color: transparent;
   color: #fff;
   outline: none;
   resize: none;
 }
-
 textarea {
   overflow: hidden;
 }

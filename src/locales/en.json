@@ -17,7 +17,7 @@
   "EventsCalendar": "Events calendar",
   "SubscribeTitle": "Subscribe for 30 days for 12$",
   "SubscribeItem1": "Unlimited numerology predictions",
-  "SubscribeItem2": "Матрица судьбы",
+  "SubscribeItem2": "Calendar of auspicious dates",
   "SubscribeItem3": "Matrix of Destiny",
   "SubscribeItem4": "Compatibility of the couple",
   "SubscribeItem5": "Forecast for the week",
@@ -38,5 +38,13 @@
   "Name": "Name",
   "yourName": "Your name",
   "send": "Send question",
-	"loading": "Loading..."
+	"loading": "Loading...",
+	"periodsTab1": "Period 1-3",
+	"periodsTab2": "Period 4-6",
+	"periodsTab3": "Period 7-9",
+	"matrixDestinyTab1": "Life Path Number",
+	"matrixDestinyTab2": "Personality number",
+	"matrixDestinyTab3": "Destiny Number",
+	"matrixDestinyTab4": "Soul number",
+	"matrixDestinyTab5": "Karmic task"
 }
