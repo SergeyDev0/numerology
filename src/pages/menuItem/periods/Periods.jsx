@@ -72,7 +72,6 @@ const Periods = observer(() => {
 						setIsWaitRes2(false);
 						setIsWaitRes3(false);
 						setIsWaitRes4(false);
-						setIsWaitRes5(false);
 					})
 					.catch((error) => {
 						console.error("Error:", error.message);
@@ -80,7 +79,6 @@ const Periods = observer(() => {
 						setIsWaitRes2(false);
 						setIsWaitRes3(false);
 						setIsWaitRes4(false);
-						setIsWaitRes5(false);
 					});
 			}
 		};
@@ -115,6 +113,7 @@ const Periods = observer(() => {
 			}
 	
 			if ((name !== "") && (data)) {
+				console.log(data.text)
 				fetch("https://numerology-ai.ru/user/api/Promt", {
 					method: "POST",
 					headers: {
@@ -149,7 +148,6 @@ const Periods = observer(() => {
 						setIsWaitRes2(false);
 						setIsWaitRes3(false);
 						setIsWaitRes4(false);
-						setIsWaitRes5(false);
 					})
 					.catch((error) => {
 						console.error("Error:", error.message);
@@ -158,7 +156,6 @@ const Periods = observer(() => {
 						setIsWaitRes2(false);
 						setIsWaitRes3(false);
 						setIsWaitRes4(false);
-						setIsWaitRes5(false);
 					});
 			}
 		};
@@ -286,7 +283,23 @@ const Periods = observer(() => {
                               console.log(dateBirthday);
                             }}
                             text={
-                              isWaitRes2 ? t("loading") : t("periodsTab2")
+                              isWaitRes2 ? t("loading") : t("periodsTab1")
+                            }
+                          />
+                        </div>
+                      </li>
+											<li className={styles.btnPromptItem}>
+                        <div className={styles.btnWrapper}>
+                          <ButtonSolid
+                            button={"true"}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleSubmit(e, "3");
+                              setIsWaitRes3(true);
+                              console.log(dateBirthday);
+                            }}
+                            text={
+                              isWaitRes3 ? t("loading") : t("periodsTab2")
                             }
                           />
                         </div>
@@ -297,10 +310,10 @@ const Periods = observer(() => {
                             button={"true"}
                             onClick={(e) => {
                               e.preventDefault();
-                              handleSubmit(e, "3");
-                              setIsWaitRes3(true);
+                              handleSubmit(e, "4");
+                              setIsWaitRes4(true);
                             }}
-                            text={isWaitRes3 ? t("loading") : t("periodsTab3")}
+                            text={isWaitRes4 ? t("loading") : t("periodsTab3")}
                           />
                         </div>
                       </li>
