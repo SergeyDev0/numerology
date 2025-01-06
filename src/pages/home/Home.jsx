@@ -28,7 +28,7 @@ const Home = () => {
                     <Link to="/privacy-policy">{t("PrivacyPolicy")}</Link>
                     <Link to="/terms-agreement">{t("TermsAgreement")}</Link>
                 </div>
-								<div className={styles.copyright}>© All Rights Reserved |&nbsp;<a href="http://webmaxup.ru/">WebMaxUp</a></div>
+								<div className={styles.copyright}>© All Rights Reserved |&nbsp;<a href="http://webmaxup.ru/" target="_blank">WebMaxUp</a></div>
             </main>
             <Wheel position="center" />
         </Layout>
