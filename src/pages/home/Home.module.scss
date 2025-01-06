@@ -51,3 +51,21 @@
         }
     }
 }
+
+.copyright {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 1rem;
+	color: #f6c37f;
+
+	@media screen and (max-width: 1000px) {
+		font-size: 12px;
+	}
+
+	& > a {
+		color: #f6c37f;
+    text-decoration: 1px solid underline #f6c37f !important;
+    -webkit-text-decoration: 1px solid underline #f6c37f !important;
+	}
+}
